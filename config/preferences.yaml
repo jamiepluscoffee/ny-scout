@@ -1,0 +1,34 @@
+home_neighborhood: "West Village"
+max_travel_minutes: 35
+
+weekday_late_cutoff: "22:30"  # Don't recommend events starting after this on weeknights
+weekend_late_cutoff: "23:30"
+
+category_weights:
+  jazz: 1.0
+  concert: 0.8
+  theatre: 0.6
+  exhibition: 0.5
+
+vibe_preferences:
+  - intimate
+  - elegant
+  - date-friendly
+  - not-touristy
+
+venue_boost:
+  # Known favorites get a scoring bump (0-10 scale)
+  "Village Vanguard": 8
+  "The Jazz Gallery": 9
+  "Smalls Jazz Club": 7
+  "Dizzy's Club": 6
+  "Blue Note": 3  # touristy but occasionally great bookings
+  "Poster House": 5
+
+wildcard_cadence: weekly  # Include one wildcard pick per week
+
+selection:
+  tonight_count: 5
+  week_count: 10
+  min_score: 25
+  max_per_venue_week: 2

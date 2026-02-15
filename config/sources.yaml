@@ -1,0 +1,48 @@
+sources:
+  - name: ticketmaster
+    url: "https://app.ticketmaster.com/discovery/v2/events.json"
+    category: music,arts
+    method: json_api
+    parser_module: ingestion.sources.ticketmaster
+    cadence: daily
+    enabled: true
+
+  - name: jazz_gallery
+    url: "https://www.thejazzgallery.org/calendar"
+    category: jazz
+    method: ics
+    parser_module: ingestion.sources.jazz_gallery
+    cadence: daily
+    enabled: true
+
+  - name: jazznear
+    url: "https://www.jazznearyou.com/nyc/live-calendar"
+    category: jazz
+    method: json_ld
+    parser_module: ingestion.sources.jazznear
+    cadence: daily
+    enabled: true
+
+  - name: village_vanguard
+    url: "https://villagevanguard.com"
+    category: jazz
+    method: scrape
+    parser_module: ingestion.sources.village_vanguard
+    cadence: daily
+    enabled: true
+
+  - name: smalls
+    url: "https://www.smallslive.com/tickets/"
+    category: jazz
+    method: scrape
+    parser_module: ingestion.sources.smalls
+    cadence: daily
+    enabled: true
+
+  - name: poster_house
+    url: "https://posterhouse.org/events/"
+    category: exhibition
+    method: scrape
+    parser_module: ingestion.sources.poster_house
+    cadence: daily
+    enabled: true

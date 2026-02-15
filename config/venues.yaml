@@ -1,0 +1,96 @@
+venues:
+  "Village Vanguard":
+    neighborhood: "West Village"
+    lat: 40.7359
+    lon: -74.0019
+    vibe_tags: [intimate, legendary, date-friendly]
+    capacity: 123
+    seated: true
+
+  "The Jazz Gallery":
+    neighborhood: "Flatiron"
+    lat: 40.7401
+    lon: -73.9903
+    vibe_tags: [intimate, adventurous, listening-room]
+    capacity: 80
+    seated: true
+
+  "Smalls Jazz Club":
+    neighborhood: "West Village"
+    lat: 40.7348
+    lon: -74.0028
+    vibe_tags: [intimate, underground, late-night]
+    capacity: 60
+    seated: true
+
+  "Mezzrow":
+    neighborhood: "West Village"
+    lat: 40.7348
+    lon: -74.0030
+    vibe_tags: [intimate, elegant, listening-room]
+    capacity: 40
+    seated: true
+
+  "Dizzy's Club":
+    neighborhood: "Columbus Circle"
+    lat: 40.7688
+    lon: -73.9829
+    vibe_tags: [elegant, views, date-friendly]
+    capacity: 140
+    seated: true
+
+  "Blue Note":
+    neighborhood: "Greenwich Village"
+    lat: 40.7308
+    lon: -73.9999
+    vibe_tags: [touristy, well-known]
+    capacity: 240
+    seated: true
+
+  "Birdland":
+    neighborhood: "Midtown West"
+    lat: 40.7585
+    lon: -73.9903
+    vibe_tags: [classic, seated, theatre-district]
+    capacity: 170
+    seated: true
+
+  "Poster House":
+    neighborhood: "Flatiron"
+    lat: 40.7453
+    lon: -73.9882
+    vibe_tags: [design, intimate, cultured]
+    capacity: null
+    seated: false
+
+  "Carnegie Hall":
+    neighborhood: "Midtown"
+    lat: 40.7651
+    lon: -73.9800
+    vibe_tags: [grand, classic, seated]
+    capacity: 2804
+    seated: true
+
+  "Le Poisson Rouge":
+    neighborhood: "Greenwich Village"
+    lat: 40.7282
+    lon: -74.0007
+    vibe_tags: [eclectic, intimate, downtown]
+    capacity: 250
+    seated: false
+
+  "National Sawdust":
+    neighborhood: "Williamsburg"
+    lat: 40.7114
+    lon: -73.9659
+    vibe_tags: [adventurous, intimate, new-music]
+    capacity: 170
+    seated: true
+
+  "Barbès":
+    neighborhood: "Park Slope"
+    lat: 40.6729
+    lon: -73.9777
+    vibe_tags: [intimate, eclectic, neighborhood-gem]
+    capacity: 60
+    seated: false

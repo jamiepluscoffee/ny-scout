@@ -1,0 +1,57 @@
+name: Daily NYC Scout
+
+on:
+  schedule:
+    # 08:30 ET = 13:30 UTC (EST) / 12:30 UTC (EDT)
+    - cron: "30 12 * * *"
+  workflow_dispatch:  # Allow manual runs
+
+permissions:
+  contents: write
+
+env:
+  TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+  SMTP_HOST: ${{ secrets.SMTP_HOST }}
+  SMTP_PORT: ${{ secrets.SMTP_PORT }}
+  SMTP_USER: ${{ secrets.SMTP_USER }}
+  SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+  DIGEST_RECIPIENT: ${{ secrets.DIGEST_RECIPIENT }}
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
+  DB_PATH: data/scout.db
+
+jobs:
+  ingest-and-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore DB from cache
+        uses: actions/cache@v4
+        with:
+          path: data/scout.db
+          key: scout-db-${{ github.run_number }}
+          restore-keys: scout-db-
+
+      - name: Run ingestion
+        run: python scripts/run_ingest.py -v
+
+      - name: Run digest (email + web)
+        run: python scripts/run_digest.py -v
+
+      - name: Commit updated web page
+        run: |
+          git config user.name "NYC Scout Bot"
+          git config user.email "bot@nycscout.local"
+          git add web/index.html
+          git diff --cached --quiet || git commit -m "Update daily digest $(date +%Y-%m-%d)"
+          git push

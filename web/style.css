@@ -1,0 +1,130 @@
+/* NYC Scout — minimal, elegant stylesheet */
+
+:root {
+  --bg: #f5f0e8;
+  --surface: #fffdf7;
+  --text: #2c2416;
+  --text-muted: #6b5e4b;
+  --text-faint: #8a7e6b;
+  --accent: #b8860b;
+  --border: #e8e0d0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  text-align: center;
+  padding: 3rem 1.5rem 2rem;
+}
+
+header h1 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.updated {
+  color: var(--text-faint);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.section-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.event-card {
+  background: var(--surface);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(44, 36, 22, 0.06);
+}
+
+.event-meta {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  margin-bottom: 0.35rem;
+}
+
+.event-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.event-venue {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.event-why {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.ticket-link {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-style: normal;
+  letter-spacing: 0.03em;
+}
+
+.ticket-link:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  border-top: 2px solid var(--border);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  header { padding: 2rem 1rem 1.5rem; }
+  main { padding: 0 1rem 2rem; }
+  .event-card { padding: 1rem; }
+}
