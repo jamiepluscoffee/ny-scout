@@ -24,7 +24,9 @@ class Adapter(JSONAPIAdapter):
 
         params = {
             "apikey": api_key,
-            "dmaId": self.DMA_ID,
+            "latlong": "40.7128,-74.0060",
+            "radius": "15",
+            "unit": "miles",
             "classificationName": "music,arts",
             "startDateTime": start,
             "endDateTime": end,
