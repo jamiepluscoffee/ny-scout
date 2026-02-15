@@ -30,23 +30,38 @@ def get_venue_info(venue_name: str, venues: dict) -> dict | None:
     return None
 
 
-def score_taste(event, prefs: dict, venues: dict) -> float:
-    """Score 0-40 based on category, venue, and vibe alignment."""
-    score = 0.0
+def _load_taste_profile() -> dict:
+    """Load taste profile data (artist affinities, etc.)."""
+    path = os.path.join(CONFIG_DIR, "taste_profile.yaml")
+    if os.path.exists(path):
+        with open(path) as f:
+            return yaml.safe_load(f) or {}
+    return {}
 
-    # Category weight (0-15)
+
+# -- Taste signals --
+# Each signal takes (event, prefs, venues) and returns a float sub-score.
+# To add a new taste signal, define a function and add it to TASTE_SIGNALS.
+
+def category_signal(event, prefs: dict, venues: dict) -> float:
+    """Score 0-15 based on category preference weight."""
     cat_weights = prefs.get("category_weights", {})
     category = event.category.lower() if event.category else ""
-    score += cat_weights.get(category, 0.3) * 15
+    return cat_weights.get(category, 0.3) * 15
 
-    # Venue reputation boost (0-10)
+
+def venue_reputation_signal(event, prefs: dict, venues: dict) -> float:
+    """Score 0-10 based on venue boost from preferences."""
     venue_boosts = prefs.get("venue_boost", {})
     for vname, boost in venue_boosts.items():
         if fuzz.ratio(event.venue_name.lower(), vname.lower()) > 85:
-            score += boost
-            break
+            return float(boost)
+    return 0.0
 
-    # Vibe alignment (0-15)
+
+def vibe_alignment_signal(event, prefs: dict, venues: dict) -> float:
+    """Score -8 to 15 based on vibe tag overlap with preferences."""
+    score = 0.0
     venue_info = get_venue_info(event.venue_name, venues)
     if venue_info:
         vibe_tags = set(venue_info.get("vibe_tags", []))
@@ -54,10 +69,32 @@ def score_taste(event, prefs: dict, venues: dict) -> float:
         if vibe_tags & preferred_vibes:
             overlap = len(vibe_tags & preferred_vibes)
             score += min(overlap * 5, 15)
-        # Penalize touristy
         if "touristy" in vibe_tags and "not-touristy" in preferred_vibes:
             score -= 8
+    return score
 
+
+def listening_history_signal(event, prefs: dict, venues: dict) -> float:
+    """Score based on Last.fm/Spotify listening history. Returns 0-10.
+
+    Future: load artist listen counts from config/taste_profile.yaml
+    and boost events featuring artists the user actually listens to.
+    """
+    return 0.0
+
+
+# Ordered list of taste signals. Add new signals here.
+TASTE_SIGNALS = [
+    category_signal,         # 0-15
+    venue_reputation_signal, # 0-10
+    vibe_alignment_signal,   # -8 to 15
+    listening_history_signal,  # 0-10 (placeholder)
+]
+
+
+def score_taste(event, prefs: dict, venues: dict) -> float:
+    """Score 0-40 based on pluggable taste signals."""
+    score = sum(signal(event, prefs, venues) for signal in TASTE_SIGNALS)
     return max(0, min(score, 40))
 
 

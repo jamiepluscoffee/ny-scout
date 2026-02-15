@@ -1,0 +1,7 @@
+# Taste profile — populated from Last.fm, Spotify, or manual input.
+# Used by listening_history_signal in ranking/scorer.py.
+#
+# artist_affinities:
+#   "Brad Mehldau": 0.95
+#   "Joel Ross": 0.7
+#   "Ambrose Akinmusire": 0.8

@@ -52,6 +52,6 @@ jobs:
         run: |
           git config user.name "NYC Scout Bot"
           git config user.email "bot@nycscout.local"
-          git add web/index.html
+          git add docs/index.html
           git diff --cached --quiet || git commit -m "Update daily digest $(date +%Y-%m-%d)"
           git push

@@ -1,4 +1,4 @@
-"""Select events for the digest: Tonight, This Week, Wildcard."""
+"""Select events for the digest: Tonight, This Week, Coming Up, Wildcard."""
 from __future__ import annotations
 
 from collections import Counter
@@ -123,6 +123,27 @@ def select_this_week(prefs=None, venues=None) -> list[tuple]:
     return result
 
 
+def select_coming_up(prefs=None, venues=None) -> list[tuple]:
+    """Select top events 1–6 weeks out (8–42 days), no venue cap.
+
+    These are the 'buy tickets now' picks — events far enough out that
+    you have time to plan, but likely to sell out.
+    """
+    prefs = prefs or load_preferences()
+    venues = venues or load_venues()
+    now = datetime.now()
+    start = now + timedelta(days=8)
+    end = now + timedelta(days=42)
+
+    events = get_active_events(start, end)
+    scored = score_and_rank(events, prefs, venues)
+
+    min_score = prefs.get("selection", {}).get("min_score", 25)
+    count = prefs.get("selection", {}).get("coming_up_count", 5)
+
+    return [(ev, s) for ev, s in scored if s["total"] >= min_score][:count]
+
+
 def select_wildcard(prefs=None, venues=None) -> tuple | None:
     """Select one wildcard pick with boosted novelty."""
     prefs = prefs or load_preferences()
@@ -148,5 +169,6 @@ def select_all() -> dict:
     return {
         "tonight": select_tonight(prefs, venues),
         "this_week": select_this_week(prefs, venues),
+        "coming_up": select_coming_up(prefs, venues),
         "wildcard": select_wildcard(prefs, venues),
     }

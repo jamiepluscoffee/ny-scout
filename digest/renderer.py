@@ -1,5 +1,6 @@
 """Render digest as HTML email body."""
 from datetime import datetime
+from math import ceil
 
 from ranking.explainer import explain_event
 
@@ -26,7 +27,19 @@ def _format_day(event) -> str:
     return ""
 
 
-def _render_event_html(event, scores, index: int) -> str:
+def _format_lead_time(event) -> str:
+    """Return a human-readable lead time like 'in 3 weeks'."""
+    dt = event.start_dt
+    if not hasattr(dt, "date"):
+        return ""
+    days_out = (dt - datetime.now()).days
+    if days_out < 14:
+        return f"in {days_out} days"
+    weeks = ceil(days_out / 7)
+    return f"in {weeks} weeks"
+
+
+def _render_event_html(event, scores, index: int, lead_time: str = "") -> str:
     explanation = explain_event(event)
     price = _format_price(event)
     time = _format_time(event)
@@ -35,6 +48,10 @@ def _render_event_html(event, scores, index: int) -> str:
     ticket_link = ""
     if event.ticket_url:
         ticket_link = f' · <a href="{event.ticket_url}" style="color: #b8860b;">Tickets</a>'
+
+    lead_time_html = ""
+    if lead_time:
+        lead_time_html = f'<div style="font-size: 11px; color: #8a7e6b; margin-bottom: 4px;">{lead_time}</div>'
 
     return f"""
     <tr>
@@ -48,6 +65,7 @@ def _render_event_html(event, scores, index: int) -> str:
         <div style="font-size: 13px; color: #6b5e4b; margin-bottom: 4px;">
           {event.venue_name}{(' · ' + event.neighborhood) if event.neighborhood else ''}
         </div>
+        {lead_time_html}
         <div style="font-size: 14px; color: #4a4132; line-height: 1.5; font-style: italic;">
           {explanation}
         </div>
@@ -67,6 +85,10 @@ def render_html(digest_data: dict) -> str:
     week_rows = ""
     for i, (ev, scores) in enumerate(digest_data.get("this_week", []), 1):
         week_rows += _render_event_html(ev, scores, i)
+
+    coming_up_rows = ""
+    for i, (ev, scores) in enumerate(digest_data.get("coming_up", []), 1):
+        coming_up_rows += _render_event_html(ev, scores, i, lead_time=_format_lead_time(ev))
 
     wildcard_row = ""
     wc = digest_data.get("wildcard")
@@ -94,6 +116,17 @@ def render_html(digest_data: dict) -> str:
         </tr>
         {week_rows}"""
 
+    coming_up_section = ""
+    if coming_up_rows:
+        coming_up_section = f"""
+        <tr>
+          <td style="padding: 24px 0 8px;">
+            <h2 style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #b8860b; margin: 0; font-weight: 600;">Coming Up</h2>
+            <div style="font-size: 12px; color: #8a7e6b; margin-top: 4px;">Worth booking now</div>
+          </td>
+        </tr>
+        {coming_up_rows}"""
+
     wildcard_section = ""
     if wildcard_row:
         wildcard_section = f"""
@@ -120,6 +153,7 @@ def render_html(digest_data: dict) -> str:
         <table role="presentation" width="100%">
           {tonight_section}
           {week_section}
+          {coming_up_section}
           {wildcard_section}
         </table>
       </td>

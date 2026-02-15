@@ -74,7 +74,7 @@ Add your secrets in GitHub repo Settings → Secrets:
 
 ## Web Dashboard
 
-Enable GitHub Pages (Settings → Pages → Source: main, `/web` folder) for a live daily dashboard at `jamiepluscoffee.github.io/ny-scout/`.
+Enable GitHub Pages (Settings → Pages → Source: main, `/docs` folder) for a live daily dashboard at `jamiepluscoffee.github.io/ny-scout/`.
 
 ## Tests
 
