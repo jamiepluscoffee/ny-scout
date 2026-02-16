@@ -159,6 +159,56 @@ def _build_prompt(event, prefs: dict, vibes: list[str]) -> str:
     )
 
 
+def match_reasons(event, scores: dict, prefs: dict = None, venues: dict = None) -> list[str]:
+    """Return 1-2 short reason strings based on which scoring signals fired.
+
+    Uses individual signal values from scores["signals"] to determine
+    the most relevant reasons for recommending this event.
+    """
+    import yaml
+
+    if prefs is None:
+        config_dir = os.path.join(os.path.dirname(__file__), "..", "config")
+        with open(os.path.join(config_dir, "preferences.yaml")) as f:
+            prefs = yaml.safe_load(f)
+    if venues is None:
+        config_dir = os.path.join(os.path.dirname(__file__), "..", "config")
+        with open(os.path.join(config_dir, "venues.yaml")) as f:
+            venues = yaml.safe_load(f).get("venues", {})
+
+    signals = scores.get("signals", {})
+    reasons = []
+
+    # Artist affinity (listening history signal returns 0-10, affinity is value/10)
+    artist_affinity = signals.get("artist_affinity", 0)
+    if artist_affinity > 0:
+        pct = int(round(artist_affinity * 10))
+        reasons.append(f"{pct}% Artist Match")
+
+    # Venue reputation (0-10 scale from venue_boost)
+    venue_rep = signals.get("venue_reputation", 0)
+    if venue_rep > 5:
+        reasons.append("Top venue for you")
+
+    # Category weight (0-15 scale; high = category_weight >= 12, i.e. weight >= 0.8)
+    cat_weight = signals.get("category_weight", 0)
+    if cat_weight >= 12 and len(reasons) < 2:
+        cat = event.category or "music"
+        cat_label = cat.capitalize()
+        reasons.append(f"{cat_label} affinity")
+
+    # Home neighborhood
+    home_match = signals.get("home_neighborhood", False)
+    if home_match and len(reasons) < 2:
+        reasons.append("In your neighborhood")
+
+    # Fallback
+    if not reasons:
+        reasons.append("New discovery")
+
+    return reasons[:2]
+
+
 def explain_event(event, prefs: dict = None, venues_config: dict = None) -> str:
     """Generate explanation, trying LLM first then falling back to template."""
     import yaml

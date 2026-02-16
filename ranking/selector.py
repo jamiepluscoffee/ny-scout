@@ -162,6 +162,21 @@ def select_wildcard(prefs=None, venues=None) -> tuple | None:
     return None
 
 
+def select_full_list(prefs=None, venues=None) -> list[tuple]:
+    """Score all active events in the next 90 days, sorted by total desc.
+
+    No min_score filter — returns everything for the Full List page.
+    """
+    prefs = prefs or load_preferences()
+    venues = venues or load_venues()
+    now = datetime.now()
+    end = now + timedelta(days=90)
+
+    events = get_active_events(now, end)
+    scored = score_and_rank(events, prefs, venues)
+    return scored
+
+
 def select_all() -> dict:
     """Run all selectors and return the full digest data."""
     prefs = load_preferences()

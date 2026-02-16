@@ -12,10 +12,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from db.models import init_db
-from ranking.selector import select_all
+from ranking.selector import select_all, select_full_list
+from ranking.scorer import load_preferences, load_venues
 from digest.renderer import render_html, render_subject
 from digest.email_sender import send_email
-from digest.web_renderer import render_web
+from digest.web_renderer import render_web, render_full_list
 
 
 def main():
@@ -58,10 +59,17 @@ def main():
         else:
             logger.error("Failed to send email digest")
 
-    # Generate web page
+    # Generate web pages
     if not args.no_web:
-        web_path = render_web(digest_data)
+        prefs = load_preferences()
+        venues = load_venues()
+        web_path = render_web(digest_data, prefs=prefs, venues=venues)
         logger.info(f"Web page generated: {web_path}")
+
+        # Generate The Full List
+        full_list = select_full_list(prefs, venues)
+        list_path = render_full_list(full_list, prefs=prefs, venues=venues)
+        logger.info(f"Full list generated: {list_path} ({len(full_list)} events)")
 
     print(f"\nDigest: {tonight_count} tonight, {week_count} this week"
           f"{', 1 wildcard' if has_wildcard else ''}")

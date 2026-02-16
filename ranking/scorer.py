@@ -225,10 +225,28 @@ def score_event(event, prefs: dict = None, venues: dict = None,
     novelty = score_novelty(event, seen_artists, seen_venues)
     total = taste + convenience + social + novelty
 
+    # Collect individual signal values for match reasons
+    signals = {
+        "artist_affinity": listening_history_signal(event, prefs, venues),
+        "venue_reputation": venue_reputation_signal(event, prefs, venues),
+        "category_weight": category_signal(event, prefs, venues),
+        "home_neighborhood": _home_neighborhood_match(event, prefs, venues),
+    }
+
     return {
         "total": round(total, 1),
         "taste": round(taste, 1),
         "convenience": round(convenience, 1),
         "social": round(social, 1),
         "novelty": round(novelty, 1),
+        "signals": signals,
     }
+
+
+def _home_neighborhood_match(event, prefs: dict, venues: dict) -> bool:
+    """Check if the event venue is in the user's home neighborhood."""
+    home = prefs.get("home_neighborhood", "").lower()
+    venue_info = get_venue_info(event.venue_name, venues)
+    if venue_info:
+        return venue_info.get("neighborhood", "").lower() == home
+    return False
