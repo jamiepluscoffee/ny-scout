@@ -11,11 +11,6 @@ permissions:
 
 env:
   TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
-  SMTP_HOST: ${{ secrets.SMTP_HOST }}
-  SMTP_PORT: ${{ secrets.SMTP_PORT }}
-  SMTP_USER: ${{ secrets.SMTP_USER }}
-  SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-  DIGEST_RECIPIENT: ${{ secrets.DIGEST_RECIPIENT }}
   ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
   LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
   DB_PATH: data/scout.db
@@ -47,7 +42,7 @@ jobs:
         continue-on-error: true
         run: python scripts/run_ingest.py -v
 
-      - name: Run digest (email + web)
+      - name: Generate web pages
         run: python scripts/run_digest.py -v
 
       - name: Commit updated web page
