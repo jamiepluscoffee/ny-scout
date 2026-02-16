@@ -36,8 +36,12 @@ class Adapter(BaseAdapter):
         self.strategy = self.extraction.get("strategy", "json_ld")
         self.default_category = source_config.get("category", "")
         self.default_venue = self.extraction.get("default_venue", "")
+        self.use_playwright = source_config.get("method") == "playwright"
 
     def fetch_raw(self) -> str:
+        if self.use_playwright:
+            from ingestion.playwright_adapter import fetch_with_playwright
+            return fetch_with_playwright(self.url)
         resp = requests.get(self.url, headers=self.HEADERS, timeout=30)
         resp.raise_for_status()
         return resp.text
@@ -68,6 +72,14 @@ class Adapter(BaseAdapter):
 
             items = data if isinstance(data, list) else [data]
             for item in items:
+                # Handle ItemList wrapping (e.g. KYD Labs)
+                if item.get("@type") == "ItemList":
+                    for list_item in item.get("itemListElement", []):
+                        inner = list_item.get("item", list_item)
+                        event = self._parse_jsonld_item(inner)
+                        if event:
+                            events.append(event)
+                    continue
                 event = self._parse_jsonld_item(item)
                 if event:
                     events.append(event)
@@ -116,6 +128,13 @@ class Adapter(BaseAdapter):
                     entities.append({"type": "artist", "value": name})
             elif isinstance(perf, str) and perf:
                 entities.append({"type": "artist", "value": perf})
+
+        # If no performers listed, use event title as artist (common for venue listings)
+        if not entities and title:
+            # Strip status suffixes like "(Sold Out)", "(Low Tickets)"
+            artist_name = re.sub(r'\s*\((?:Sold Out|Low Tickets|Limited)\)\s*$', '', title, flags=re.IGNORECASE).strip()
+            if artist_name:
+                entities.append({"type": "artist", "value": artist_name})
 
         # Price
         offers = item.get("offers", {})

@@ -13,7 +13,13 @@
 - [ ] Expand Ticketmaster date range beyond 14 days (for Coming Up section)
 - [ ] Filter out junk events (e.g. "COMING SOON!" placeholder from Vanguard scraper)
 - [ ] Fix Jazz Gallery DNS / find alternative calendar source
-- [ ] Fix Smalls scraper (needs JavaScript rendering)
+- [x] Playwright adapter for JS-rendered sites (Smalls, LPR, future sources)
+  > New base adapter that renders pages with headless browser before parsing. Unblocks Smalls, LPR, and any discovered source that needs JS.
+  > `fetch_with_playwright()` standalone function + `PlaywrightAdapter` base class in `ingestion/playwright_adapter.py`.
+  > Generic adapter now supports `method: playwright` in sources.yaml — uses Playwright for fetching, then any extraction strategy (json_ld, follow_links, etc.).
+  > Also added ItemList JSON-LD support and millisecond datetime parsing.
+  > LPR registered via KYD Labs listing page (kydlabs.com/p/lpr/bio) — 67 events with ticket URLs. SSL issue with Python 3.9's LibreSSL bypassed by Playwright's bundled Chromium.
+  > Smalls still needs investigation — their /tickets/ page doesn't show event listings even with JS rendering.
 - [ ] Add price data where missing
 - [ ] Detect and group long-running events (Broadway shows, museum exhibitions)
   > Same event appearing daily at one venue should show once, with a date range. Possibly a dedicated "Long Running" section.
@@ -21,9 +27,9 @@
 ## Up Next
 > Themes to pick from when the current one is done
 
+- **Art Taste Intelligence** — Build an art/exhibition taste profile parallel to music. Need sources for gallery/museum exhibitions, a way to express art preferences (artists, movements, mediums, galleries), and a scoring signal that ranks exhibitions by personal interest. Different category from music — can't use Last.fm for this.
 - **New Event Alerts** — Detect newly announced events and surface them early so Jamie can buy tickets before they sell out. Regular scans for "what's new since last check" rather than just "what's happening this week."
 - **Personal Event Index** — Transform the app from a weekly digest into a comprehensive, always-up-to-date index of everything happening in NYC, scored by personal relevance. Sortable by relevance or date. Current "picks" become a separate tab/page. This is the big vision shift.
-- **Taste Intelligence** — Wire up Last.fm/Spotify listening history to taste scoring via `config/taste_profile.yaml` and `listening_history_signal`
 - **Digest Polish** — Improve email formatting, add unsubscribe, mobile styling
 - **More Sources** — Add Dizzy's Club, Birdland, Carnegie Hall, Le Poisson Rouge scrapers
 
@@ -35,6 +41,20 @@
 - "Friends going" social signal
 
 ## Completed Themes
+
+### Theme: Music Taste Intelligence ✓
+- [x] Last.fm API integration (`scripts/sync_lastfm.py`)
+  > Pulls all-time top artists (200+ plays) and recent listening (6 months). API key in .env, username: dustpunk.
+- [x] Artist affinity scoring (log-scaled plays + recency boost)
+  > Log scale prevents the long tail from being flat. Recent artists get up to +0.3 boost. 199 artists synced.
+- [x] Manual overrides preserved in taste_profile.yaml
+  > Entries that existed before first sync (e.g. Theo Croker: 0.9) are flagged as manual and never overwritten.
+- [x] `listening_history_signal` wired up in scorer (was stubbed at 0)
+  > Fuzzy-matches event performers against artist_affinities. Best match × 10 = score (0-10 points).
+- [x] Smoke Jazz Club scraper + venue metadata
+  > Dedicated adapter for tickets.smokejazz.com. Parses .show-card HTML, extracts dates/prices/artists.
+- [x] International Anthem registered via follow_links discovery
+  > 32 events from /shows page. Mix of NYC/Chicago/LA — scoring handles geo-filtering.
 
 ### Theme: Source Discovery ✓
 - [x] `discovered_links.yaml` intake format

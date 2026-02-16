@@ -3,6 +3,7 @@ artist_affinities:
   Coldplay: 1.0
   Nils Frahm: 0.932
   Theo Croker: 0.9
+  Takuya Kuroda: 0.9
   Drake: 0.852
   Bon Iver: 0.831
   65daysofstatic: 0.826
@@ -202,3 +203,4 @@ lastfm_synced: true
 lastfm_username: dustpunk
 manual_artists:
 - Theo Croker
+- Takuya Kuroda

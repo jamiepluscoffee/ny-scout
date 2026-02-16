@@ -71,6 +71,8 @@ class BaseAdapter(abc.ABC):
         if not dt_str:
             return None
         formats = [fmt] if fmt else [
+            "%Y-%m-%dT%H:%M:%S.%fZ",
+            "%Y-%m-%dT%H:%M:%S.%f%z",
             "%Y-%m-%dT%H:%M:%S",
             "%Y-%m-%dT%H:%M:%SZ",
             "%Y-%m-%dT%H:%M:%S%z",

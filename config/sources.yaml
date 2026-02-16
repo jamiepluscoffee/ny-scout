@@ -55,6 +55,17 @@ sources:
     cadence: daily
     enabled: true
 
+  - name: lpr
+    url: "https://kydlabs.com/p/lpr/bio"
+    category: concert
+    method: playwright
+    parser_module: ingestion.sources.generic
+    cadence: daily
+    enabled: true
+    extraction:
+      strategy: json_ld
+      default_venue: Le Poisson Rouge
+
   - name: intlanthem
     url: "https://www.intlanthem.com/shows"
     category: concert
