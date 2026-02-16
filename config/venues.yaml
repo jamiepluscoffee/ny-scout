@@ -95,6 +95,22 @@ venues:
     capacity: 65
     seated: true
 
+  "Elsewhere":
+    neighborhood: "Bushwick"
+    lat: 40.7053
+    lon: -73.9235
+    vibe_tags: [eclectic, multi-room, late-night]
+    capacity: 800
+    seated: false
+
+  "Warsaw":
+    neighborhood: "Greenpoint"
+    lat: 40.7224
+    lon: -73.9484
+    vibe_tags: [eclectic, standing-room, indie]
+    capacity: 850
+    seated: false
+
   "Barbès":
     neighborhood: "Park Slope"
     lat: 40.6729

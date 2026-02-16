@@ -66,6 +66,25 @@ sources:
       strategy: json_ld
       default_venue: Le Poisson Rouge
 
+  - name: elsewhere
+    url: "https://www.elsewhere.club/events"
+    category: concert
+    method: scrape
+    parser_module: ingestion.sources.elsewhere
+    cadence: daily
+    enabled: true
+
+  - name: warsaw
+    url: "https://www.warsawconcerts.com/shows"
+    category: concert
+    method: scrape
+    parser_module: ingestion.sources.generic
+    cadence: daily
+    enabled: true
+    extraction:
+      strategy: json_ld
+      default_venue: Warsaw
+
   - name: intlanthem
     url: "https://www.intlanthem.com/shows"
     category: concert

@@ -133,6 +133,8 @@ class Adapter(BaseAdapter):
         if not entities and title:
             # Strip status suffixes like "(Sold Out)", "(Low Tickets)"
             artist_name = re.sub(r'\s*\((?:Sold Out|Low Tickets|Limited)\)\s*$', '', title, flags=re.IGNORECASE).strip()
+            # Strip tour name suffixes like "Artist: Tour Name" or "Artist - Tour 2026"
+            artist_name = re.split(r'\s*[:–—]\s+.*(?:Tour|Live|Presents|Concert)\b', artist_name, flags=re.IGNORECASE)[0].strip()
             if artist_name:
                 entities.append({"type": "artist", "value": artist_name})
 

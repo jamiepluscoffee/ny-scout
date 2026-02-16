@@ -133,7 +133,7 @@ def select_coming_up(prefs=None, venues=None) -> list[tuple]:
     venues = venues or load_venues()
     now = datetime.now()
     start = now + timedelta(days=8)
-    end = now + timedelta(days=42)
+    end = now + timedelta(days=90)
 
     events = get_active_events(start, end)
     scored = score_and_rank(events, prefs, venues)

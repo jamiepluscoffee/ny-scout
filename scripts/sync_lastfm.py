@@ -95,13 +95,14 @@ def compute_affinities(alltime: list[dict], recent: list[dict]) -> dict[str, flo
     max_plays = int(alltime[0]["playcount"])
     log_max = math.log1p(max_plays)
 
-    # Base affinities from all-time plays (log-scaled)
+    # Base affinities from all-time plays (power-law curve)
     affinities = {}
     for a in alltime:
         plays = int(a["playcount"])
-        # log scale: log(plays) / log(max) gives 0.0–1.0, then scale to 0.1–0.85
+        # log scale gives 0.0–1.0, then power curve steepens the drop-off
+        # so the long tail of casual listens scores much lower
         log_score = math.log1p(plays) / log_max
-        base = 0.1 + (log_score * 0.75)
+        base = 0.1 + (log_score ** 2.5) * 0.85
         affinities[a["name"]] = round(base, 3)
 
     # Recency boost

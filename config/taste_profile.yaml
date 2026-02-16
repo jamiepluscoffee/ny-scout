@@ -1,373 +1,352 @@
 artist_affinities:
-  Radiohead: 1.0
-  Coldplay: 1.0
-  Bon Iver: 0.981
-  65daysofstatic: 0.976
-  The Bronx: 0.973
-  Nils Frahm: 0.932
+  Bon Iver: 1.0
+  65daysofstatic: 1.0
+  The Bronx: 1.0
+  Alexisonfire: 1.0
+  Brand New: 1.0
+  Leifur James: 1.0
+  Rick Ross: 1.0
+  City and Colour: 1.0
+  Foals: 1.0
+  Death Grips: 0.992
+  Chance the Rapper: 0.986
+  Pusha T: 0.976
+  IDLES: 0.96
+  Radiohead: 0.95
+  Coldplay: 0.95
+  Nils Frahm: 0.95
+  Drake: 0.95
+  The Dillinger Escape Plan: 0.939
+  Darkside: 0.936
+  Jon Hopkins: 0.933
+  Four Tet: 0.926
   Theo Croker: 0.9
   Takuya Kuroda: 0.9
-  Alexisonfire: 0.9
-  Brand New: 0.891
-  Leifur James: 0.856
-  Rick Ross: 0.855
-  City and Colour: 0.854
-  Drake: 0.852
-  Foals: 0.848
-  Death Grips: 0.829
-  Chance the Rapper: 0.827
-  Pusha T: 0.823
-  M83: 0.817
-  IDLES: 0.817
-  Lithe: 0.811
-  The Dillinger Escape Plan: 0.809
-  Darkside: 0.808
-  Jon Hopkins: 0.807
-  Four Tet: 0.804
-  Ben Frost: 0.794
-  The Barr Brothers: 0.784
-  Holy Fuck: 0.782
-  Fred again..: 0.781
-  Lorn: 0.78
-  James Blake: 0.779
-  Joy Orbison: 0.775
-  Two Gallants: 0.775
-  Nina Simone: 0.774
-  Kanye West: 0.764
-  The Paper Kites: 0.757
-  Tim Hecker: 0.757
-  Death Cab for Cutie: 0.753
-  Colin Stetson: 0.751
-  Grouper: 0.748
-  Grappler: 0.745
-  Converge: 0.742
-  Tourist: 0.74
-  Rival Consoles: 0.74
-  DJ Shadow: 0.735
-  Norma Jean: 0.733
-  JAY-Z: 0.733
-  Meek Mill: 0.729
-  The National: 0.723
-  The Cinematic Orchestra: 0.717
-  Knxwledge: 0.716
-  Lawrence English: 0.716
-  Makaya McCraven: 0.711
-  Kendrick Lamar: 0.711
-  Arctic Monkeys: 0.708
-  Bring Me the Horizon: 0.707
-  Bombay Bicycle Club: 0.703
-  Patrick Watson: 0.701
-  Phoebe Bridgers: 0.7
-  Stormzy: 0.696
-  Aparde: 0.69
-  araabMUZIK: 0.685
-  Billie Eilish: 0.685
-  Earl Sweatshirt: 0.684
-  Alessandro Cortini: 0.683
-  Al Quetz: 0.682
-  GoGo Penguin: 0.681
-  Childish Gambino: 0.677
-  Interpol: 0.675
-  Cancer Bats: 0.675
-  Fink: 0.673
-  Big Sean: 0.671
-  Friendly Fires: 0.671
-  J Dilla: 0.668
-  Above & Beyond: 0.665
-  Bloc Party: 0.664
-  Maribou State: 0.663
-  Taylor Swift: 0.662
-  The Streets: 0.661
-  Manchester Orchestra: 0.659
-  Jimmy Eat World: 0.656
-  Clark: 0.655
-  mewithoutYou: 0.655
-  Jimi Hendrix: 0.655
-  Arcade Fire: 0.654
-  The Maccabees: 0.652
-  Deftones: 0.651
-  Overmono: 0.649
-  Metric: 0.646
-  Ludwig van Beethoven: 0.644
-  Robert Glasper: 0.643
-  Efdemin: 0.642
-  Miracle Tones: 0.642
-  Ben Howard: 0.641
-  LCD Soundsystem: 0.641
-  Floating Points: 0.64
-  Bright Eyes: 0.639
-  Madvillain: 0.638
-  Flying Lotus: 0.638
-  Lil Wayne: 0.637
-  Caribou: 0.637
-  Burial: 0.637
-  Kings of Leon: 0.636
-  Hozier: 0.635
-  Johannes Brahms: 0.635
-  Bonobo: 0.635
-  A$AP Rocky: 0.633
-  ARAAB MUZIK: 0.631
-  Queens of the Stone Age: 0.631
-  James Vincent McMorrow: 0.63
-  Circa Survive: 0.629
-  The Boxer Rebellion: 0.629
-  Sufjan Stevens: 0.629
-  Sergei Rachmaninoff: 0.629
-  Thrice: 0.628
-  Christian Scott aTunde Adjuah: 0.628
-  Future: 0.626
-  Hatebreed: 0.626
-  Adam Gnade: 0.626
-  Port St. Willow: 0.626
-  Dark Dark Dark: 0.625
-  Chet Faker: 0.624
-  Max Richter: 0.624
-  The Beatles: 0.623
-  Monokle: 0.621
-  Moderat: 0.621
-  50 Cent: 0.62
-  Touché Amoré: 0.616
-  Yellow Swans: 0.616
-  José González: 0.616
-  Portico Quartet: 0.616
-  Daughter: 0.615
-  RY X: 0.613
-  Underoath: 0.613
-  Max Cooper: 0.613
-  Miles Davis: 0.613
-  Daniel Avery: 0.613
-  Khruangbin: 0.612
-  NxWorries: 0.61
-  Marconi Union: 0.61
-  Charles Mingus: 0.61
-  Jay Electronica: 0.609
-  Rolo Tomassi: 0.608
-  Tapes 'n Tapes: 0.608
-  Tory Lanez: 0.608
-  Matthew Halsall: 0.606
-  blink-182: 0.605
-  Nicholas Britell: 0.604
-  Thom Yorke: 0.604
-  The xx: 0.604
-  Gregory Alan Isakov: 0.604
-  Caleb Arredondo: 0.604
-  Paul White: 0.601
-  Kiasmos: 0.601
-  Brad Mehldau: 0.601
-  Mura Masa: 0.601
-  Dope Body: 0.6
-  Swans: 0.6
-  Cornelia: 0.6
-  DJ Semtex: 0.6
-  Hookworms: 0.6
-  Jungle: 0.6
-  Makaya Mccraven: 0.6
-  Micachu: 0.6
-  Pete Swanson: 0.6
-  TRAAMS: 0.6
-  Throwing Snow: 0.6
-  Wounds: 0.6
-  patten (DJ/re-edit set): 0.6
-  Abi Wade: 0.6
-  American Nightmare: 0.6
-  Anchorsong: 0.6
-  Angel Haze: 0.6
-  Arclight: 0.6
-  Arkestry: 0.6
-  Axis Of: 0.6
-  BESS ATWELL: 0.6
-  Baby Godzilla: 0.6
-  Bad Breeding: 0.6
-  Balam Acab: 0.6
-  Basement: 0.6
-  Bass Clef: 0.6
-  Bicep: 0.6
-  Big Cosmos: 0.6
-  Big Narstie: 0.6
-  Blaenavon: 0.6
-  Boredoms: 0.6
-  Breton: 0.6
-  Bullion: 0.6
-  CASisDEAD: 0.6
-  CJ Beatz: 0.6
-  Charli XCX DJ Set: 0.6
-  Chastity: 0.6
-  Cherrystones: 0.6
-  Child's Pose: 0.6
-  Clear Plastic Masks: 0.6
-  Cloud Nothings: 0.6
-  Coves: 0.6
-  Crushed Beaks: 0.6
-  Crvvcks: 0.6
-  Cult Cinema: 0.6
-  Dahga Bloom: 0.6
-  Dark Sky: 0.6
-  Dave Currie: 0.6
-  Dawes: 0.6
-  Dead Meadow: 0.6
-  Demonstrations: 0.6
-  Departures: 0.6
-  Despot: 0.6
-  Django Django: 0.6
-  Dream Mclean: 0.6
-  DāM-FunK: 0.6
-  El-P: 0.6
-  Everything Everything: 0.6
-  Eyedress: 0.6
-  Flume: 0.6
-  GAPS: 0.6
-  Ghosting Season: 0.6
-  Glitches: 0.6
-  Goodtime Boys: 0.6
-  Grieved: 0.6
-  Hallucination Blues Dj Sets: 0.6
-  Harlem Spartans: 0.6
-  Heavy Lungs: 0.6
-  Helm: 0.6
-  Her Parents: 0.6
-  High Water: 0.6
-  Hot Chip: 0.6
-  Hurray for the Riff Raff: 0.6
-  I Was a Cub Scout: 0.6
-  IYES: 0.6
-  Ice, Sea, Dead People: 0.6
-  Indian Wells: 0.6
-  Jack Cheshire: 0.6
-  Jacques Gaspard Biberkopf: 0.6
-  Jake Long: 0.6
-  Jenny Hval: 0.6
-  Jolta: 0.6
-  Josh Vine: 0.6
-  Kara-Lis Coverdale: 0.6
-  Karen Gwyer: 0.6
-  King Krule: 0.6
-  Kirk Spencer: 0.6
-  Kite Base: 0.6
-  Koreless: 0.6
-  Kutmah: 0.6
-  Lab Coast: 0.6
-  Laura Cannell: 0.6
-  Laurel Halo: 0.6
-  Leon Bridges: 0.6
-  Lime Headed Dog: 0.6
-  London Contemporary Orchestra: 0.6
-  Low Moon Low: 0.6
-  Lowell: 0.6
-  Luke Abbott: 0.6
-  Manny Norte: 0.6
-  Maybeshewill: 0.6
-  Mercury Rev: 0.6
-  Metz: 0.6
-  Micachu & The Shapes: 0.6
-  Micachu Dj Set: 0.6
-  Mikaela Davis: 0.6
-  Mint: 0.6
-  Moon Gangs: 0.6
-  More Than Life: 0.6
-  Moto & Bagheera: 0.6
-  Nathan Detroit: 0.6
-  New Desert Blues: 0.6
-  Only Real: 0.6
-  PAPA: 0.6
-  Pangaea: 0.6
-  Pettybone: 0.6
-  Polar States: 0.6
-  Portico: 0.6
-  Portugal. The Man: 0.6
-  Psychemagik: 0.6
-  Raime (DJ set): 0.6
-  Ratking: 0.6
-  Refused: 0.6
-  Rezzett: 0.6
-  Romare: 0.6
-  Rosie Turton: 0.6
-  Ross From Friends: 0.6
-  Ryley Walker: 0.6
-  SOHN: 0.6
-  Sarah Harrison: 0.6
-  Seams: 0.6
-  Seán McGowan: 0.6
-  Sian Anderson: 0.6
-  Sinjin Hawke: 0.6
-  Sinkane: 0.6
-  Sir Richard Bishop: 0.6
-  Slow Club: 0.6
-  Snips (Livin Proof): 0.6
-  Solid Gold Dragons: 0.6
-  Sundara Karma: 0.6
-  T. Williams: 0.6
-  Taylor McFerrin: 0.6
-  The Big Bumble Bees: 0.6
-  The Bug: 0.6
-  The Busy Twist: 0.6
-  The Districts: 0.6
-  The Gaslamp Killer: 0.6
-  The Haxan Cloak: 0.6
-  The Physics House Band: 0.6
-  The Wytches: 0.6
-  Them Wolves: 0.6
-  Three Trapped Tigers: 0.6
-  Thunderbird Gerard: 0.6
-  Tom Vek: 0.6
-  Tonstartssbandht: 0.6
-  USA Nails: 0.6
-  Up River: 0.6
-  VALENTIN STIP DJ: 0.6
-  Vic Mensa: 0.6
-  Virginia Wing: 0.6
-  Woodpecker Wooliams: 0.6
-  Woody Woodmansey's Holy Holy: 0.6
-  Xiu Xiu: 0.6
-  Yxng Bane: 0.6
-  clipping.: 0.6
-  emufucka: 0.6
-  oOoOO: 0.6
-  robinn: 0.6
-  sleepmakeswaves: 0.6
-  Big Thief: 0.599
-  Mumford & Sons: 0.599
-  Broken Social Scene: 0.598
-  The Rolling Stones: 0.598
-  Lydia: 0.597
-  Pharoah Sanders: 0.597
-  Skeler: 0.597
-  Bobby Raps: 0.597
-  Darlingside: 0.596
-  The Doors: 0.594
-  The Middle East: 0.593
-  Rusko: 0.593
-  Stephan Bodzin: 0.592
-  Chase & Status: 0.592
-  Fuck Buttons: 0.591
-  Lapalux: 0.591
-  Every Time I Die: 0.589
-  Alice Coltrane: 0.589
-  Pete Holmes: 0.589
-  Samba Touré: 0.589
-  Kevin Morby: 0.588
-  Bing & Ruth: 0.586
-  Fat White Family: 0.586
-  Freifall: 0.39
-  Moses Yoofee Trio: 0.382
-  Endel: 0.356
-  Fabricants of Noise: 0.352
-  Minna: 0.347
-  The White Noise Travelers: 0.342
-  Malte Marten: 0.337
-  Star Chip: 0.336
-  Day Nappers: 0.335
-  Martin Nonstatic: 0.334
-  Xiskko: 0.331
-  Colin Vallon: 0.33
-  True White: 0.33
-  Dream Supplier: 0.329
-  Forevaire: 0.329
-  Astrofuss: 0.327
-  Øneheart: 0.327
-  Wolfgang Amadeus Mozart: 0.326
-  Thyyphoon: 0.326
-  Focus Noise: 0.324
-  Dancing Waves: 0.323
+  Ben Frost: 0.9
+  The Barr Brothers: 0.875
+  Holy Fuck: 0.87
+  M83: 0.86
+  Two Gallants: 0.853
+  Lithe: 0.844
+  Tim Hecker: 0.81
+  Colin Stetson: 0.797
+  Grouper: 0.79
+  Grappler: 0.783
+  Fred again..: 0.768
+  Lorn: 0.765
+  James Blake: 0.763
+  Joy Orbison: 0.753
+  Nina Simone: 0.751
+  Kanye West: 0.727
+  The Paper Kites: 0.71
+  Death Cab for Cutie: 0.701
+  Converge: 0.676
+  Tourist: 0.672
+  Rival Consoles: 0.672
+  DJ Shadow: 0.661
+  Norma Jean: 0.656
+  JAY-Z: 0.656
+  Meek Mill: 0.648
+  The National: 0.635
+  The Cinematic Orchestra: 0.622
+  Knxwledge: 0.62
+  Lawrence English: 0.62
+  Makaya McCraven: 0.609
+  Kendrick Lamar: 0.609
+  Arctic Monkeys: 0.603
+  Bring Me the Horizon: 0.601
+  Bombay Bicycle Club: 0.593
+  Patrick Watson: 0.589
+  Phoebe Bridgers: 0.587
+  Stormzy: 0.578
+  Aparde: 0.567
+  araabMUZIK: 0.557
+  Billie Eilish: 0.557
+  Earl Sweatshirt: 0.555
+  Alessandro Cortini: 0.553
+  Al Quetz: 0.551
+  GoGo Penguin: 0.549
+  Childish Gambino: 0.541
+  Interpol: 0.537
+  Cancer Bats: 0.537
+  Fink: 0.534
+  Big Sean: 0.53
+  Friendly Fires: 0.53
+  J Dilla: 0.524
+  Above & Beyond: 0.519
+  Bloc Party: 0.517
+  Maribou State: 0.515
+  Taylor Swift: 0.513
+  The Streets: 0.511
+  Manchester Orchestra: 0.508
+  Dope Body: 0.508
+  Swans: 0.508
+  Cornelia: 0.508
+  DJ Semtex: 0.508
+  Hookworms: 0.508
+  Jungle: 0.508
+  Makaya Mccraven: 0.508
+  Micachu: 0.508
+  Pete Swanson: 0.508
+  TRAAMS: 0.508
+  Throwing Snow: 0.508
+  Wounds: 0.508
+  patten (DJ/re-edit set): 0.508
+  Abi Wade: 0.508
+  American Nightmare: 0.508
+  Anchorsong: 0.508
+  Angel Haze: 0.508
+  Arclight: 0.508
+  Arkestry: 0.508
+  Axis Of: 0.508
+  BESS ATWELL: 0.508
+  Baby Godzilla: 0.508
+  Bad Breeding: 0.508
+  Balam Acab: 0.508
+  Basement: 0.508
+  Bass Clef: 0.508
+  Bicep: 0.508
+  Big Cosmos: 0.508
+  Big Narstie: 0.508
+  Blaenavon: 0.508
+  Boredoms: 0.508
+  Breton: 0.508
+  Bullion: 0.508
+  CASisDEAD: 0.508
+  CJ Beatz: 0.508
+  Charli XCX DJ Set: 0.508
+  Chastity: 0.508
+  Cherrystones: 0.508
+  Child's Pose: 0.508
+  Clear Plastic Masks: 0.508
+  Cloud Nothings: 0.508
+  Coves: 0.508
+  Crushed Beaks: 0.508
+  Crvvcks: 0.508
+  Cult Cinema: 0.508
+  Dahga Bloom: 0.508
+  Dark Sky: 0.508
+  Dave Currie: 0.508
+  Dawes: 0.508
+  Dead Meadow: 0.508
+  Demonstrations: 0.508
+  Departures: 0.508
+  Despot: 0.508
+  Django Django: 0.508
+  Dream Mclean: 0.508
+  DāM-FunK: 0.508
+  El-P: 0.508
+  Everything Everything: 0.508
+  Eyedress: 0.508
+  Flume: 0.508
+  GAPS: 0.508
+  Ghosting Season: 0.508
+  Glitches: 0.508
+  Goodtime Boys: 0.508
+  Grieved: 0.508
+  Hallucination Blues Dj Sets: 0.508
+  Harlem Spartans: 0.508
+  Heavy Lungs: 0.508
+  Helm: 0.508
+  Her Parents: 0.508
+  High Water: 0.508
+  Hot Chip: 0.508
+  Hurray for the Riff Raff: 0.508
+  I Was a Cub Scout: 0.508
+  IYES: 0.508
+  Ice, Sea, Dead People: 0.508
+  Indian Wells: 0.508
+  Jack Cheshire: 0.508
+  Jacques Gaspard Biberkopf: 0.508
+  Jake Long: 0.508
+  Jenny Hval: 0.508
+  Jolta: 0.508
+  Josh Vine: 0.508
+  Kara-Lis Coverdale: 0.508
+  Karen Gwyer: 0.508
+  King Krule: 0.508
+  Kirk Spencer: 0.508
+  Kite Base: 0.508
+  Koreless: 0.508
+  Kutmah: 0.508
+  Lab Coast: 0.508
+  Laura Cannell: 0.508
+  Laurel Halo: 0.508
+  Leon Bridges: 0.508
+  Lime Headed Dog: 0.508
+  London Contemporary Orchestra: 0.508
+  Low Moon Low: 0.508
+  Lowell: 0.508
+  Luke Abbott: 0.508
+  Manny Norte: 0.508
+  Maybeshewill: 0.508
+  Mercury Rev: 0.508
+  Metz: 0.508
+  Micachu & The Shapes: 0.508
+  Micachu Dj Set: 0.508
+  Mikaela Davis: 0.508
+  Mint: 0.508
+  Moon Gangs: 0.508
+  More Than Life: 0.508
+  Moto & Bagheera: 0.508
+  Nathan Detroit: 0.508
+  New Desert Blues: 0.508
+  Only Real: 0.508
+  PAPA: 0.508
+  Pangaea: 0.508
+  Pettybone: 0.508
+  Polar States: 0.508
+  Portico: 0.508
+  Portugal. The Man: 0.508
+  Psychemagik: 0.508
+  Raime (DJ set): 0.508
+  Ratking: 0.508
+  Refused: 0.508
+  Rezzett: 0.508
+  Romare: 0.508
+  Rosie Turton: 0.508
+  Ross From Friends: 0.508
+  Ryley Walker: 0.508
+  SOHN: 0.508
+  Sarah Harrison: 0.508
+  Seams: 0.508
+  Seán McGowan: 0.508
+  Sian Anderson: 0.508
+  Sinjin Hawke: 0.508
+  Sinkane: 0.508
+  Sir Richard Bishop: 0.508
+  Slow Club: 0.508
+  Snips (Livin Proof): 0.508
+  Solid Gold Dragons: 0.508
+  Sundara Karma: 0.508
+  T. Williams: 0.508
+  Taylor McFerrin: 0.508
+  The Big Bumble Bees: 0.508
+  The Bug: 0.508
+  The Busy Twist: 0.508
+  The Districts: 0.508
+  The Gaslamp Killer: 0.508
+  The Haxan Cloak: 0.508
+  The Physics House Band: 0.508
+  The Wytches: 0.508
+  Them Wolves: 0.508
+  Three Trapped Tigers: 0.508
+  Thunderbird Gerard: 0.508
+  Tom Vek: 0.508
+  Tonstartssbandht: 0.508
+  USA Nails: 0.508
+  Up River: 0.508
+  VALENTIN STIP DJ: 0.508
+  Vic Mensa: 0.508
+  Virginia Wing: 0.508
+  Woodpecker Wooliams: 0.508
+  Woody Woodmansey's Holy Holy: 0.508
+  Xiu Xiu: 0.508
+  Yxng Bane: 0.508
+  clipping.: 0.508
+  emufucka: 0.508
+  oOoOO: 0.508
+  robinn: 0.508
+  sleepmakeswaves: 0.508
+  Jimmy Eat World: 0.502
+  Clark: 0.5
+  mewithoutYou: 0.5
+  Jimi Hendrix: 0.5
+  Arcade Fire: 0.499
+  The Maccabees: 0.495
+  Deftones: 0.493
+  Overmono: 0.49
+  Metric: 0.484
+  Ludwig van Beethoven: 0.481
+  Robert Glasper: 0.479
+  Efdemin: 0.477
+  Miracle Tones: 0.477
+  Ben Howard: 0.476
+  LCD Soundsystem: 0.476
+  Floating Points: 0.474
+  Bright Eyes: 0.472
+  Madvillain: 0.47
+  Flying Lotus: 0.47
+  Lil Wayne: 0.469
+  Caribou: 0.469
+  Burial: 0.469
+  Kings of Leon: 0.467
+  Hozier: 0.465
+  Johannes Brahms: 0.465
+  Bonobo: 0.465
+  A$AP Rocky: 0.462
+  ARAAB MUZIK: 0.459
+  Queens of the Stone Age: 0.459
+  James Vincent McMorrow: 0.457
+  Circa Survive: 0.455
+  The Boxer Rebellion: 0.455
+  Sufjan Stevens: 0.455
+  Sergei Rachmaninoff: 0.455
+  Thrice: 0.453
+  Christian Scott aTunde Adjuah: 0.453
+  Future: 0.45
+  Hatebreed: 0.45
+  Adam Gnade: 0.45
+  Port St. Willow: 0.45
+  Dark Dark Dark: 0.448
+  Chet Faker: 0.447
+  Max Richter: 0.447
+  The Beatles: 0.445
+  Monokle: 0.442
+  Moderat: 0.442
+  50 Cent: 0.44
+  Touché Amoré: 0.434
+  Yellow Swans: 0.434
+  José González: 0.434
+  Portico Quartet: 0.434
+  Daughter: 0.432
+  RY X: 0.429
+  Underoath: 0.429
+  Max Cooper: 0.429
+  Miles Davis: 0.429
+  Daniel Avery: 0.429
+  Khruangbin: 0.427
+  NxWorries: 0.424
+  Marconi Union: 0.424
+  Charles Mingus: 0.424
+  Jay Electronica: 0.423
+  Rolo Tomassi: 0.421
+  Tapes 'n Tapes: 0.421
+  Tory Lanez: 0.421
+  Matthew Halsall: 0.418
+  blink-182: 0.416
+  Nicholas Britell: 0.415
+  Thom Yorke: 0.415
+  The xx: 0.415
+  Gregory Alan Isakov: 0.415
+  Caleb Arredondo: 0.415
+  Paul White: 0.41
+  Kiasmos: 0.41
+  Brad Mehldau: 0.41
+  Mura Masa: 0.41
+  Big Thief: 0.407
+  Mumford & Sons: 0.407
+  Broken Social Scene: 0.405
+  The Rolling Stones: 0.405
+  Lydia: 0.404
+  Pharoah Sanders: 0.404
+  Skeler: 0.404
+  Bobby Raps: 0.404
+  Darlingside: 0.402
+  The Doors: 0.399
+  The Middle East: 0.398
+  Rusko: 0.398
+  Stephan Bodzin: 0.396
+  Chase & Status: 0.396
+  Fuck Buttons: 0.395
+  Lapalux: 0.395
+  Every Time I Die: 0.392
+  Alice Coltrane: 0.392
+  Pete Holmes: 0.392
+  Samba Touré: 0.392
+  Kevin Morby: 0.39
+  Bing & Ruth: 0.387
+  Fat White Family: 0.387
 lastfm_synced: true
 lastfm_username: dustpunk
 manual_artists:

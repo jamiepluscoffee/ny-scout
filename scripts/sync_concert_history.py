@@ -47,7 +47,7 @@ REPEAT_BONUS = 0.1
 MAX_AFFINITY = 1.0
 
 # Artist affinity boost for concert artists
-AFFINITY_BOOST = 0.15
+AFFINITY_BOOST = 0.10
 AFFINITY_DEFAULT = 0.6
 
 

@@ -23,9 +23,16 @@ def load_venues() -> dict:
 
 
 def get_venue_info(venue_name: str, venues: dict) -> dict | None:
-    """Fuzzy match venue name against venues.yaml."""
+    """Fuzzy match venue name against venues.yaml.
+
+    Strips parenthetical room suffixes (e.g. 'Elsewhere (Zone One)' → 'Elsewhere')
+    before matching, so multi-room venues match their base entry.
+    """
+    import re
+    base_name = re.sub(r'\s*\(.*\)\s*$', '', venue_name).strip()
     for name, info in venues.items():
-        if fuzz.ratio(venue_name.lower(), name.lower()) > 85:
+        if (fuzz.ratio(venue_name.lower(), name.lower()) > 85 or
+                fuzz.ratio(base_name.lower(), name.lower()) > 85):
             return info
     return None
 
@@ -52,7 +59,7 @@ def category_signal(event, prefs: dict, venues: dict) -> float:
 
 def venue_reputation_signal(event, prefs: dict, venues: dict) -> float:
     """Score 0-10 based on venue boost from preferences."""
-    venue_boosts = prefs.get("venue_boost", {})
+    venue_boosts = prefs.get("venue_boost") or {}
     for vname, boost in venue_boosts.items():
         if fuzz.ratio(event.venue_name.lower(), vname.lower()) > 85:
             return float(boost)
@@ -65,7 +72,7 @@ def vibe_alignment_signal(event, prefs: dict, venues: dict) -> float:
     venue_info = get_venue_info(event.venue_name, venues)
     if venue_info:
         vibe_tags = set(venue_info.get("vibe_tags", []))
-        preferred_vibes = set(prefs.get("vibe_preferences", []))
+        preferred_vibes = set(prefs.get("vibe_preferences") or [])
         if vibe_tags & preferred_vibes:
             overlap = len(vibe_tags & preferred_vibes)
             score += min(overlap * 5, 15)
@@ -136,18 +143,18 @@ def concert_history_signal(event, prefs: dict, venues: dict) -> float:
 
 # Ordered list of taste signals. Add new signals here.
 TASTE_SIGNALS = [
-    category_signal,         # 0-15
-    venue_reputation_signal, # 0-10
-    vibe_alignment_signal,   # -8 to 15
+    # category_signal,         # 0-15 (disabled — v2)
+    # venue_reputation_signal, # 0-10 (disabled — v2)
+    # vibe_alignment_signal,   # -8 to 15 (disabled — v2)
     listening_history_signal,  # 0-10
     concert_history_signal,  # 0-10
 ]
 
 
 def score_taste(event, prefs: dict, venues: dict) -> float:
-    """Score 0-40 based on pluggable taste signals."""
+    """Score 0-20 based on artist signals (listening history + concert history)."""
     score = sum(signal(event, prefs, venues) for signal in TASTE_SIGNALS)
-    return max(0, min(score, 40))
+    return max(0, min(score, 20))
 
 
 def score_convenience(event, prefs: dict, venues: dict) -> float:
@@ -252,10 +259,10 @@ def score_event(event, prefs: dict = None, venues: dict = None,
     venues = venues or load_venues()
 
     taste = score_taste(event, prefs, venues)
-    convenience = score_convenience(event, prefs, venues)
-    social = score_social(event, prefs, venues)
+    convenience = 0  # disabled — v2
+    social = 0  # disabled — v2
     novelty = score_novelty(event, seen_artists, seen_venues)
-    total = taste + convenience + social + novelty
+    total = taste + novelty
 
     # Collect individual signal values for match reasons
     signals = {

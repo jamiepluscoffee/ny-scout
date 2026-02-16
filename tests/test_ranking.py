@@ -34,22 +34,20 @@ class TestTasteScore:
         self.prefs = load_preferences()
         self.venues = load_venues()
 
-    def test_jazz_at_vanguard_scores_high(self):
+    def test_no_artist_match_scores_zero(self):
+        """Events with no artist affinity get 0 taste score."""
         ev = _make_event(venue_name="Village Vanguard", category="jazz")
         score = score_taste(ev, self.prefs, self.venues)
-        assert score >= 20  # Jazz category + venue boost + vibe match
+        assert score == 0  # No artist entities = no taste signal
 
-    def test_unknown_venue_scores_lower(self):
-        ev = _make_event(venue_name="Random Bar", category="jazz")
+    def test_artist_match_scores_positive(self):
+        """Events with a matched artist get a positive taste score."""
+        entity = MagicMock()
+        entity.entity_type = "artist"
+        entity.entity_value = "Radiohead"
+        ev = _make_event(entities=[entity])
         score = score_taste(ev, self.prefs, self.venues)
-        assert score < 20
-
-    def test_touristy_venue_penalized(self):
-        ev_touristy = _make_event(venue_name="Blue Note", category="jazz")
-        ev_intimate = _make_event(venue_name="The Jazz Gallery", category="jazz")
-        score_touristy = score_taste(ev_touristy, self.prefs, self.venues)
-        score_intimate = score_taste(ev_intimate, self.prefs, self.venues)
-        assert score_intimate > score_touristy
+        assert score > 0
 
 
 class TestConvenienceScore:

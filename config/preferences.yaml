@@ -11,24 +11,22 @@ category_weights:
   exhibition: 0.5
 
 vibe_preferences:
-  - intimate
-  - elegant
-  - date-friendly
-  - not-touristy
+  # Zeroed for now — vibe matching is a v2/v3 signal
+  # - intimate
+  # - elegant
+  # - date-friendly
+  # - not-touristy
 
 venue_boost:
-  # Known favorites get a scoring bump (0-10 scale)
-  "Village Vanguard": 8
-  "The Jazz Gallery": 9
-  "Smalls Jazz Club": 7
-  "Dizzy's Club": 6
-  "Blue Note": 3  # touristy but occasionally great bookings
-  "Poster House": 5
+  # Zeroed for now — venue reputation is a v2/v3 signal
+  # "Village Vanguard": 8
+  # "The Jazz Gallery": 9
 
 wildcard_cadence: weekly  # Include one wildcard pick per week
 
 selection:
   tonight_count: 5
   week_count: 10
-  min_score: 25
+  coming_up_count: 8
+  min_score: 15
   max_per_venue_week: 2
