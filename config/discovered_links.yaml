@@ -1,0 +1,18 @@
+# Links shared by Jamie for source discovery.
+# Add URLs here and run: python3 scripts/run_ingest.py --discover
+#
+# Format:
+#   - url: "https://example.com/events"
+#     note: "Optional context about why this is interesting"
+#     added: 2026-02-15
+#
+# After processing, entries get a 'status' field (processed/failed/unclear).
+
+links:
+- url: https://www.intlanthem.com/news/pwui9fqcc8k9ttqz25975d3d6o6ghu
+  added: '2026-02-15'
+  note: International Anthem - Chicago label with great NYC shows (Makaya McCraven,
+    Tom Skinner, etc.)
+  classified_as: unknown
+  status: unclear
+  status_note: Could not determine page type — please clarify what this link is for

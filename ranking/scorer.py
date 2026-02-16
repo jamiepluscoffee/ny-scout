@@ -75,12 +75,32 @@ def vibe_alignment_signal(event, prefs: dict, venues: dict) -> float:
 
 
 def listening_history_signal(event, prefs: dict, venues: dict) -> float:
-    """Score based on Last.fm/Spotify listening history. Returns 0-10.
+    """Score 0-10 based on artist affinity from Last.fm listening history.
 
-    Future: load artist listen counts from config/taste_profile.yaml
-    and boost events featuring artists the user actually listens to.
+    Matches event performers against artist_affinities in taste_profile.yaml.
+    Uses fuzzy matching (85% threshold) to handle name variations.
+    Takes the highest affinity among all performers on the event.
     """
-    return 0.0
+    profile = _load_taste_profile()
+    affinities = profile.get("artist_affinities", {})
+    if not affinities:
+        return 0.0
+
+    # Get artist names from event entities
+    artist_names = [e.entity_value for e in event.entities if e.entity_type == "artist"]
+    if not artist_names:
+        return 0.0
+
+    best_score = 0.0
+    for artist in artist_names:
+        artist_lower = artist.lower()
+        for known_artist, affinity in affinities.items():
+            if fuzz.ratio(artist_lower, known_artist.lower()) > 85:
+                best_score = max(best_score, float(affinity))
+                break
+
+    # Scale affinity (0-1) to signal score (0-10)
+    return round(best_score * 10, 1)
 
 
 # Ordered list of taste signals. Add new signals here.

@@ -87,6 +87,14 @@ venues:
     capacity: 170
     seated: true
 
+  "Smoke Jazz Club":
+    neighborhood: "Upper West Side"
+    lat: 40.8003
+    lon: -73.9685
+    vibe_tags: [intimate, elegant, date-friendly, dinner-show]
+    capacity: 65
+    seated: true
+
   "Barbès":
     neighborhood: "Park Slope"
     lat: 40.6729

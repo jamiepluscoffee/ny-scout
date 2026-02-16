@@ -1,7 +1,204 @@
-# Taste profile — populated from Last.fm, Spotify, or manual input.
-# Used by listening_history_signal in ranking/scorer.py.
-#
-# artist_affinities:
-#   "Brad Mehldau": 0.95
-#   "Joel Ross": 0.7
-#   "Ambrose Akinmusire": 0.8
+artist_affinities:
+  Radiohead: 1.0
+  Coldplay: 1.0
+  Nils Frahm: 0.932
+  Theo Croker: 0.9
+  Drake: 0.852
+  Bon Iver: 0.831
+  65daysofstatic: 0.826
+  The Bronx: 0.823
+  M83: 0.817
+  Lithe: 0.811
+  Fred again..: 0.781
+  Lorn: 0.78
+  James Blake: 0.779
+  Joy Orbison: 0.775
+  Nina Simone: 0.774
+  Kanye West: 0.764
+  The Paper Kites: 0.757
+  Death Cab for Cutie: 0.753
+  Alexisonfire: 0.75
+  Converge: 0.742
+  Brand New: 0.741
+  Tourist: 0.74
+  Rival Consoles: 0.74
+  DJ Shadow: 0.735
+  Norma Jean: 0.733
+  JAY-Z: 0.733
+  Meek Mill: 0.729
+  The National: 0.723
+  The Cinematic Orchestra: 0.717
+  Knxwledge: 0.716
+  Lawrence English: 0.716
+  Makaya McCraven: 0.711
+  Kendrick Lamar: 0.711
+  Arctic Monkeys: 0.708
+  Bring Me the Horizon: 0.707
+  Leifur James: 0.706
+  Rick Ross: 0.705
+  City and Colour: 0.704
+  Bombay Bicycle Club: 0.703
+  Patrick Watson: 0.701
+  Phoebe Bridgers: 0.7
+  Foals: 0.698
+  Stormzy: 0.696
+  Aparde: 0.69
+  araabMUZIK: 0.685
+  Billie Eilish: 0.685
+  Earl Sweatshirt: 0.684
+  Alessandro Cortini: 0.683
+  Al Quetz: 0.682
+  GoGo Penguin: 0.681
+  Death Grips: 0.679
+  Chance the Rapper: 0.677
+  Childish Gambino: 0.677
+  Interpol: 0.675
+  Cancer Bats: 0.675
+  Fink: 0.673
+  Pusha T: 0.673
+  Big Sean: 0.671
+  Friendly Fires: 0.671
+  J Dilla: 0.668
+  IDLES: 0.667
+  Above & Beyond: 0.665
+  Bloc Party: 0.664
+  Maribou State: 0.663
+  Taylor Swift: 0.662
+  The Streets: 0.661
+  The Dillinger Escape Plan: 0.659
+  Manchester Orchestra: 0.659
+  Darkside: 0.658
+  Jon Hopkins: 0.657
+  Jimmy Eat World: 0.656
+  Clark: 0.655
+  mewithoutYou: 0.655
+  Jimi Hendrix: 0.655
+  Arcade Fire: 0.654
+  Four Tet: 0.654
+  The Maccabees: 0.652
+  Deftones: 0.651
+  Overmono: 0.649
+  Metric: 0.646
+  Ludwig van Beethoven: 0.644
+  Ben Frost: 0.644
+  Robert Glasper: 0.643
+  Efdemin: 0.642
+  Miracle Tones: 0.642
+  Ben Howard: 0.641
+  LCD Soundsystem: 0.641
+  Floating Points: 0.64
+  Bright Eyes: 0.639
+  Madvillain: 0.638
+  Flying Lotus: 0.638
+  Lil Wayne: 0.637
+  Caribou: 0.637
+  Burial: 0.637
+  Kings of Leon: 0.636
+  Hozier: 0.635
+  Johannes Brahms: 0.635
+  Bonobo: 0.635
+  The Barr Brothers: 0.634
+  A$AP Rocky: 0.633
+  Holy Fuck: 0.632
+  ARAAB MUZIK: 0.631
+  Queens of the Stone Age: 0.631
+  James Vincent McMorrow: 0.63
+  Circa Survive: 0.629
+  The Boxer Rebellion: 0.629
+  Sufjan Stevens: 0.629
+  Sergei Rachmaninoff: 0.629
+  Thrice: 0.628
+  Christian Scott aTunde Adjuah: 0.628
+  Future: 0.626
+  Hatebreed: 0.626
+  Adam Gnade: 0.626
+  Port St. Willow: 0.626
+  Two Gallants: 0.625
+  Dark Dark Dark: 0.625
+  Chet Faker: 0.624
+  Max Richter: 0.624
+  The Beatles: 0.623
+  Monokle: 0.621
+  Moderat: 0.621
+  50 Cent: 0.62
+  Touché Amoré: 0.616
+  Yellow Swans: 0.616
+  José González: 0.616
+  Portico Quartet: 0.616
+  Daughter: 0.615
+  RY X: 0.613
+  Underoath: 0.613
+  Max Cooper: 0.613
+  Miles Davis: 0.613
+  Daniel Avery: 0.613
+  Khruangbin: 0.612
+  NxWorries: 0.61
+  Marconi Union: 0.61
+  Charles Mingus: 0.61
+  Jay Electronica: 0.609
+  Rolo Tomassi: 0.608
+  Tapes 'n Tapes: 0.608
+  Tory Lanez: 0.608
+  Tim Hecker: 0.607
+  Matthew Halsall: 0.606
+  blink-182: 0.605
+  Nicholas Britell: 0.604
+  Thom Yorke: 0.604
+  The xx: 0.604
+  Gregory Alan Isakov: 0.604
+  Caleb Arredondo: 0.604
+  Paul White: 0.601
+  Colin Stetson: 0.601
+  Kiasmos: 0.601
+  Brad Mehldau: 0.601
+  Mura Masa: 0.601
+  Big Thief: 0.599
+  Mumford & Sons: 0.599
+  Broken Social Scene: 0.598
+  The Rolling Stones: 0.598
+  Grouper: 0.598
+  Lydia: 0.597
+  Pharoah Sanders: 0.597
+  Skeler: 0.597
+  Bobby Raps: 0.597
+  Darlingside: 0.596
+  Grappler: 0.595
+  The Doors: 0.594
+  The Middle East: 0.593
+  Rusko: 0.593
+  Stephan Bodzin: 0.592
+  Chase & Status: 0.592
+  Fuck Buttons: 0.591
+  Lapalux: 0.591
+  Every Time I Die: 0.589
+  Alice Coltrane: 0.589
+  Pete Holmes: 0.589
+  Samba Touré: 0.589
+  Kevin Morby: 0.588
+  Bing & Ruth: 0.586
+  Fat White Family: 0.586
+  Freifall: 0.39
+  Moses Yoofee Trio: 0.382
+  Endel: 0.356
+  Fabricants of Noise: 0.352
+  Minna: 0.347
+  The White Noise Travelers: 0.342
+  Malte Marten: 0.337
+  Star Chip: 0.336
+  Day Nappers: 0.335
+  Martin Nonstatic: 0.334
+  Xiskko: 0.331
+  Colin Vallon: 0.33
+  True White: 0.33
+  Dream Supplier: 0.329
+  Forevaire: 0.329
+  Astrofuss: 0.327
+  Øneheart: 0.327
+  Wolfgang Amadeus Mozart: 0.326
+  Thyyphoon: 0.326
+  Focus Noise: 0.324
+  Dancing Waves: 0.323
+lastfm_synced: true
+lastfm_username: dustpunk
+manual_artists:
+- Theo Croker

@@ -46,3 +46,25 @@ sources:
     parser_module: ingestion.sources.poster_house
     cadence: daily
     enabled: true
+
+  - name: smoke
+    url: "https://tickets.smokejazz.com/"
+    category: jazz
+    method: scrape
+    parser_module: ingestion.sources.smoke
+    cadence: daily
+    enabled: true
+
+  - name: intlanthem
+    url: "https://www.intlanthem.com/shows"
+    category: concert
+    method: discovered
+    parser_module: ingestion.sources.generic
+    cadence: daily
+    enabled: true
+    origin: discovered
+    discovered_from: "https://www.intlanthem.com/shows"
+    extraction:
+      strategy: follow_links
+      sub_strategy: json_ld
+      default_venue: International Anthem
