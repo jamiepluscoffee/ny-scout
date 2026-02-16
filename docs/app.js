@@ -6,15 +6,21 @@
   var allEvents = [];
   var filtered = [];
   var shown = 0;
-  var sortMode = "score"; // "score" or "date"
+  var sortMode = "score";
+
+  // SVG icon strings
+  var ICON_CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>';
+  var ICON_PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
+  var ICON_TICKET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>';
 
   var container = document.getElementById("event-list");
   var searchInput = document.getElementById("search-input");
-  var sortSelect = document.getElementById("sort-select");
-  var loadMoreBtn = document.getElementById("load-more-btn");
+  var sortScoreBtn = document.getElementById("sort-score");
+  var sortDateBtn = document.getElementById("sort-date");
+  var loadMoreArea = document.getElementById("load-more-area");
   var statusEl = document.getElementById("list-status");
 
-  if (!container) return; // Not on the list page
+  if (!container) return;
 
   // Parse embedded JSON
   var dataEl = document.getElementById("event-data");
@@ -50,54 +56,52 @@
     return sorted;
   }
 
-  function scoreClass(score) {
-    if (score >= 65) return "high";
-    if (score >= 40) return "mid";
-    return "low";
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
   }
 
   function renderCard(ev) {
     var ticketHtml = "";
     if (ev.ticket_url) {
       ticketHtml =
-        '<div class="event-actions"><a href="' +
-        ev.ticket_url +
-        '" class="ticket-btn" target="_blank" rel="noopener">\ud83c\udfab Get Tickets</a></div>';
+        '<a href="' + escapeHtml(ev.ticket_url) + '" class="ticket-btn" target="_blank" rel="noopener">' +
+        ICON_TICKET + " Get Tickets</a>";
     }
 
     var matchHtml = "";
     if (ev.match_reasons && ev.match_reasons.length) {
       matchHtml =
-        '<div class="event-match"><span class="match-label">Match: </span>' +
-        '<span class="match-text">' +
-        ev.match_reasons.join(" + ") +
-        "</span></div>";
+        '<div class="event-match"><span class="match-label">Match:</span> ' +
+        escapeHtml(ev.match_reasons.join(" + ")) +
+        "</div>";
+    }
+
+    var venueDisplay = escapeHtml(ev.venue);
+    if (ev.neighborhood) {
+      venueDisplay += ", " + escapeHtml(ev.neighborhood);
     }
 
     return (
       '<article class="event-card">' +
-      '<div class="event-info">' +
-      '<div class="event-title"><a href="' + (ev.ticket_url || "#") + '">' +
-      ev.title +
-      "</a></div>" +
-      '<div class="event-meta">\ud83d\udcc5 ' +
-      ev.day +
-      " \u2022 " +
-      ev.time +
-      '  \ud83d\udccd ' +
-      ev.venue +
-      (ev.neighborhood ? ", " + ev.neighborhood : "") +
-      "    [" +
-      ev.price +
-      "]</div>" +
-      matchHtml +
+      '<div class="event-card-body">' +
+      '<div class="event-card-info">' +
+      '<div class="event-artist">' + escapeHtml(ev.title) + "</div>" +
+      '<div class="event-meta">' +
+      '<span class="event-meta-item">' + ICON_CAL + " <span>" + escapeHtml(ev.day) + " &bull; " + escapeHtml(ev.time) + "</span></span>" +
+      '<span class="event-meta-item">' + ICON_PIN + ' <span class="venue-text">' + venueDisplay + "</span></span>" +
       "</div>" +
-      '<div class="event-score"><div class="score-number ' +
-      scoreClass(ev.score) +
-      '">' +
-      Math.round(ev.score) +
-      '</div><div class="score-label">/100</div></div>' +
+      "</div>" +
+      '<div class="event-card-right">' +
+      '<div class="event-score"><span class="score-number">' + Math.round(ev.score) + '</span><span class="score-label">/100</span></div>' +
+      '<div class="event-price">' + escapeHtml(ev.price) + "</div>" +
+      "</div>" +
+      "</div>" +
+      '<div class="event-card-footer">' +
+      '<div class="event-footer-left">' + matchHtml + "</div>" +
       ticketHtml +
+      "</div>" +
       "</article>"
     );
   }
@@ -135,14 +139,21 @@
   function updateStatus() {
     if (statusEl) {
       statusEl.textContent =
-        "Showing " + shown + " of " + filtered.length + " events";
+        "Showing " + shown + " of " + filtered.length + " matches";
     }
   }
 
   function updateLoadMore() {
-    if (loadMoreBtn) {
-      loadMoreBtn.style.display = shown < filtered.length ? "block" : "none";
+    if (loadMoreArea) {
+      loadMoreArea.style.display = shown < filtered.length ? "flex" : "none";
     }
+  }
+
+  function setSort(mode) {
+    sortMode = mode;
+    if (sortScoreBtn) sortScoreBtn.classList.toggle("active", mode === "score");
+    if (sortDateBtn) sortDateBtn.classList.toggle("active", mode === "date");
+    render();
   }
 
   // Event listeners
@@ -152,15 +163,20 @@
     });
   }
 
-  if (sortSelect) {
-    sortSelect.addEventListener("change", function () {
-      sortMode = sortSelect.value;
-      render();
+  if (sortScoreBtn) {
+    sortScoreBtn.addEventListener("click", function () {
+      setSort("score");
     });
   }
 
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener("click", function () {
+  if (sortDateBtn) {
+    sortDateBtn.addEventListener("click", function () {
+      setSort("date");
+    });
+  }
+
+  if (loadMoreArea) {
+    loadMoreArea.addEventListener("click", function () {
       loadMore();
     });
   }
