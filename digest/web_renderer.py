@@ -16,6 +16,7 @@ _ICON_TICKET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 _ICON_SEARCH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>'
 _ICON_SORT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>'
 _ICON_ARROWS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>'
+_ICON_SPARKLES = '<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>'
 
 
 def _format_price(event) -> str:
@@ -114,6 +115,7 @@ def _render_event_card(event, scores, prefs=None, venues=None, lead_time: str = 
 def _sidebar_html(active_page: str) -> str:
     radar_cls = ' class="active"' if active_page == "radar" else ""
     list_cls = ' class="active"' if active_page == "list" else ""
+    lucky_cls = ' class="active"' if active_page == "lucky" else ""
     return f"""
   <nav class="sidebar">
     <div class="sidebar-brand">
@@ -123,6 +125,7 @@ def _sidebar_html(active_page: str) -> str:
     <ul class="sidebar-nav">
       <li><a href="index.html"{radar_cls}>{_ICON_DISC} The Radar</a></li>
       <li><a href="list.html"{list_cls}>{_ICON_RADAR} The Full List</a></li>
+      <li><a href="lucky.html"{lucky_cls}>{_ICON_SPARKLES} Lucky Dip</a></li>
     </ul>
   </nav>"""
 
@@ -152,42 +155,15 @@ def _event_to_json(event, scores, prefs=None, venues=None) -> dict:
     }
 
 
-def render_web(digest_data: dict, output_dir: str = None, prefs: dict = None, venues: dict = None) -> str:
-    """Generate index.html (The Radar) for the web dashboard."""
+def render_web(radar_events: list[tuple], output_dir: str = None, prefs: dict = None, venues: dict = None) -> str:
+    """Generate index.html (The Radar) — artist-matched events sorted by date."""
     output_dir = output_dir or os.path.join(os.path.dirname(__file__), "..", "docs")
-    now = datetime.now()
 
     sidebar = _sidebar_html("radar")
 
-    # Build sections with category labels
-    sections_html = ""
-
-    tonight = digest_data.get("tonight", [])
-    if tonight:
-        cards = ""
-        for ev, scores in tonight:
-            cards += _render_event_card(ev, scores, prefs, venues)
-        sections_html += f'<div class="section-label">Tonight</div>\n{cards}'
-
-    week = digest_data.get("this_week", [])
-    if week:
-        cards = ""
-        for ev, scores in week:
-            cards += _render_event_card(ev, scores, prefs, venues)
-        sections_html += f'<div class="section-label">This Week</div>\n{cards}'
-
-    coming = digest_data.get("coming_up", [])
-    if coming:
-        cards = ""
-        for ev, scores in coming:
-            cards += _render_event_card(ev, scores, prefs, venues, lead_time=_format_lead_time(ev))
-        sections_html += f'<div class="section-label">Coming Up</div>\n{cards}'
-
-    wc = digest_data.get("wildcard")
-    if wc:
-        ev, scores = wc
-        card = _render_event_card(ev, scores, prefs, venues)
-        sections_html += f'<div class="section-label">Wildcard</div>\n{card}'
+    cards_html = ""
+    for ev, scores in radar_events:
+        cards_html += _render_event_card(ev, scores, prefs, venues, lead_time=_format_lead_time(ev))
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -207,7 +183,7 @@ def render_web(digest_data: dict, output_dir: str = None, prefs: dict = None, ve
       <span class="digest-subtitle">Curated for <strong>Jamie</strong></span>
     </div>
 
-    {sections_html}
+    {cards_html}
 
     <footer>
       <p>NYC Scout &middot; Curated for Jamie</p>
@@ -293,6 +269,80 @@ def render_full_list(full_list_data: list[tuple], output_dir: str = None, prefs:
 
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, "list.html")
+    with open(output_path, "w") as f:
+        f.write(html)
+
+    return output_path
+
+
+def render_lucky_dip(lucky_dip_data: list[tuple], output_dir: str = None, prefs: dict = None, venues: dict = None) -> str:
+    """Generate lucky.html (Lucky Dip) — novelty-only events with search/sort controls."""
+    output_dir = output_dir or os.path.join(os.path.dirname(__file__), "..", "docs")
+
+    events_json = []
+    for ev, scores in lucky_dip_data:
+        try:
+            entities = ev._prefetched_entities if hasattr(ev, "_prefetched_entities") else list(ev.entities)
+            original = ev.entities
+            ev.entities = entities
+            events_json.append(_event_to_json(ev, scores, prefs, venues))
+            ev.entities = original
+        except Exception:
+            events_json.append(_event_to_json(ev, scores, prefs, venues))
+
+    json_str = json.dumps(events_json, ensure_ascii=False)
+    sidebar = _sidebar_html("lucky")
+    total_count = len(events_json)
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NYC Scout \u2014 Lucky Dip</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  {sidebar}
+  <div class="main-content">
+    <h1 class="page-title">Lucky Dip</h1>
+
+    <div class="list-controls">
+      <div class="list-controls-row">
+        <div class="search-wrapper">
+          {_ICON_SEARCH}
+          <input type="text" id="search-input" class="search-input" placeholder="Search events, artists, venues...">
+        </div>
+        <div class="control-chips">
+          <button id="sort-score" class="control-chip active" data-sort="score">{_ICON_SORT} Sort: Taste Score</button>
+          <button id="sort-date" class="control-chip" data-sort="date">{_ICON_SORT} Sort: Date</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="event-list"></div>
+
+    <div id="load-more-area" class="load-more-area">
+      <div class="load-more-inner">
+        <div class="load-more-icon">{_ICON_ARROWS}</div>
+        <div>
+          <div class="load-more-text">Load More Events</div>
+          <div id="list-status" class="load-more-count">Showing 0 of {total_count} matches</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>NYC Scout &middot; Curated for Jamie</p>
+    </footer>
+  </div>
+  <script id="event-data" type="application/json">{json_str}</script>
+  <script src="app.js"></script>
+</body>
+</html>"""
+
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, "lucky.html")
     with open(output_path, "w") as f:
         f.write(html)
 

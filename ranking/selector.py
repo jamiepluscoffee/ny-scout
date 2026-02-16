@@ -177,6 +177,29 @@ def select_full_list(prefs=None, venues=None) -> list[tuple]:
     return scored
 
 
+def _has_artist_signal(scores: dict) -> bool:
+    """True if the event has any artist-based scoring signal."""
+    signals = scores.get("signals", {})
+    return signals.get("artist_affinity", 0) > 0 or signals.get("concert_history", 0) > 0
+
+
+def split_radar_and_lucky_dip(scored: list[tuple]) -> tuple[list[tuple], list[tuple]]:
+    """Split already-scored events into radar (artist signal) and lucky dip (no signal).
+
+    Radar is sorted chronologically; lucky dip keeps score-descending order.
+    """
+    radar = []
+    lucky_dip = []
+    for ev, s in scored:
+        if _has_artist_signal(s):
+            radar.append((ev, s))
+        else:
+            lucky_dip.append((ev, s))
+
+    radar.sort(key=lambda x: str(x[0].start_dt))
+    return radar, lucky_dip
+
+
 def select_all() -> dict:
     """Run all selectors and return the full digest data."""
     prefs = load_preferences()

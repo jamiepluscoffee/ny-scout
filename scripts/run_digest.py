@@ -12,11 +12,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from db.models import init_db
-from ranking.selector import select_all, select_full_list
+from ranking.selector import select_all, select_full_list, split_radar_and_lucky_dip
 from ranking.scorer import load_preferences, load_venues
 from digest.renderer import render_html, render_subject
 from digest.email_sender import send_email
-from digest.web_renderer import render_web, render_full_list
+from digest.web_renderer import render_web, render_full_list, render_lucky_dip
 
 
 def main():
@@ -63,11 +63,17 @@ def main():
     if not args.no_web:
         prefs = load_preferences()
         venues = load_venues()
-        web_path = render_web(digest_data, prefs=prefs, venues=venues)
-        logger.info(f"Web page generated: {web_path}")
 
-        # Generate The Full List
+        # One scoring pass for all three pages
         full_list = select_full_list(prefs, venues)
+        radar, lucky = split_radar_and_lucky_dip(full_list)
+
+        web_path = render_web(radar, prefs=prefs, venues=venues)
+        logger.info(f"Radar generated: {web_path} ({len(radar)} events)")
+
+        lucky_path = render_lucky_dip(lucky, prefs=prefs, venues=venues)
+        logger.info(f"Lucky Dip generated: {lucky_path} ({len(lucky)} events)")
+
         list_path = render_full_list(full_list, prefs=prefs, venues=venues)
         logger.info(f"Full list generated: {list_path} ({len(full_list)} events)")
 
