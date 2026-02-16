@@ -43,6 +43,8 @@ jobs:
           restore-keys: scout-db-
 
       - name: Run ingestion
+        id: ingest
+        continue-on-error: true
         run: python scripts/run_ingest.py -v
 
       - name: Run digest (email + web)
@@ -52,6 +54,12 @@ jobs:
         run: |
           git config user.name "NYC Scout Bot"
           git config user.email "bot@nycscout.local"
-          git add docs/index.html
+          git add docs/index.html docs/list.html
           git diff --cached --quiet || git commit -m "Update daily digest $(date +%Y-%m-%d)"
           git push
+
+      - name: Fail if ingestion had errors
+        if: steps.ingest.outcome == 'failure'
+        run: |
+          echo "::warning::Ingestion had source failures — digest still ran but check logs above"
+          exit 1
