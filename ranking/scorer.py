@@ -103,12 +103,44 @@ def listening_history_signal(event, prefs: dict, venues: dict) -> float:
     return round(best_score * 10, 1)
 
 
+def concert_history_signal(event, prefs: dict, venues: dict) -> float:
+    """Score 0-10 based on artist attendance from concert history.
+
+    Matches event performers against concert_history.artists in taste_profile.yaml.
+    Uses fuzzy matching (85% threshold) to handle name variations.
+    Takes the highest affinity among all performers on the event.
+    """
+    profile = _load_taste_profile()
+    concert_data = profile.get("concert_history", {})
+    artists = concert_data.get("artists", {})
+    if not artists:
+        return 0.0
+
+    # Get artist names from event entities
+    artist_names = [e.entity_value for e in event.entities if e.entity_type == "artist"]
+    if not artist_names:
+        return 0.0
+
+    best_score = 0.0
+    for artist in artist_names:
+        artist_lower = artist.lower()
+        for known_artist, stats in artists.items():
+            if fuzz.ratio(artist_lower, known_artist.lower()) > 85:
+                affinity = float(stats["affinity"]) if isinstance(stats, dict) else float(stats)
+                best_score = max(best_score, affinity)
+                break
+
+    # Scale affinity (0-1) to signal score (0-10)
+    return round(best_score * 10, 1)
+
+
 # Ordered list of taste signals. Add new signals here.
 TASTE_SIGNALS = [
     category_signal,         # 0-15
     venue_reputation_signal, # 0-10
     vibe_alignment_signal,   # -8 to 15
-    listening_history_signal,  # 0-10 (placeholder)
+    listening_history_signal,  # 0-10
+    concert_history_signal,  # 0-10
 ]
 
 
@@ -228,6 +260,7 @@ def score_event(event, prefs: dict = None, venues: dict = None,
     # Collect individual signal values for match reasons
     signals = {
         "artist_affinity": listening_history_signal(event, prefs, venues),
+        "concert_history": concert_history_signal(event, prefs, venues),
         "venue_reputation": venue_reputation_signal(event, prefs, venues),
         "category_weight": category_signal(event, prefs, venues),
         "home_neighborhood": _home_neighborhood_match(event, prefs, venues),

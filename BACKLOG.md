@@ -29,7 +29,7 @@
 
 - **Art Taste Intelligence** — Build an art/exhibition taste profile parallel to music. Need sources for gallery/museum exhibitions, a way to express art preferences (artists, movements, mediums, galleries), and a scoring signal that ranks exhibitions by personal interest. Different category from music — can't use Last.fm for this.
 - **New Event Alerts** — Detect newly announced events and surface them early so Jamie can buy tickets before they sell out. Regular scans for "what's new since last check" rather than just "what's happening this week."
-- **Personal Event Index** — Transform the app from a weekly digest into a comprehensive, always-up-to-date index of everything happening in NYC, scored by personal relevance. Sortable by relevance or date. Current "picks" become a separate tab/page. This is the big vision shift.
+- **Personal Event Index** — ~~Transform the app from a weekly digest into a comprehensive, always-up-to-date index of everything happening in NYC, scored by personal relevance. Sortable by relevance or date. Current "picks" become a separate tab/page. This is the big vision shift.~~ → Built as v1 in "UI Redesign" theme below.
 - **Digest Polish** — Improve email formatting, add unsubscribe, mobile styling
 - **More Sources** — Add Dizzy's Club, Birdland, Carnegie Hall, Le Poisson Rouge scrapers
 
@@ -41,6 +41,21 @@
 - "Friends going" social signal
 
 ## Completed Themes
+
+### Theme: UI Redesign v1 — The Radar + The Full List ✓
+- [x] Match reason generator (`ranking/explainer.py` → `match_reasons()`)
+  > Returns 1-2 short strings based on scoring signals: artist affinity %, venue reputation, category, neighborhood, or "New discovery" fallback.
+- [x] Expose individual signal values in `ranking/scorer.py`
+  > `score_event()` now returns a `signals` dict with `artist_affinity`, `venue_reputation`, `category_weight`, `home_neighborhood` for use by match reasons.
+- [x] Score all events for The Full List (`ranking/selector.py` → `select_full_list()`)
+  > All active events in next 90 days, scored and sorted by total. No min_score filter — 216 events on first run.
+- [x] Two-page web layout with sidebar nav
+  > `docs/index.html` (The Radar) + `docs/list.html` (The Full List). Sidebar with NY logo, active state indicator.
+- [x] Client-side search, sort, and load-more for The Full List (`docs/app.js`)
+  > Vanilla JS — text search across title/artist/venue, sort by score or date, 20-at-a-time pagination.
+- [x] CSS redesign matched to Figma designs
+  > Light sidebar, stone color palette, violet accents, monospace meta, Lucide SVG icons, dark "Get Tickets" buttons. Responsive sidebar→topbar on mobile.
+  > First pass was built from the plan alone and looked nothing like the designs. Second pass used the Figma-exported React/Tailwind code as reference — much closer.
 
 ### Theme: Music Taste Intelligence ✓
 - [x] Last.fm API integration (`scripts/sync_lastfm.py`)

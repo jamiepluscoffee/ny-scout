@@ -4,12 +4,13 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from datetime import datetime
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 from ranking.scorer import (
     score_taste, score_convenience, score_social, score_novelty,
-    load_preferences, load_venues,
+    load_preferences, load_venues, concert_history_signal,
 )
+from ranking.explainer import match_reasons
 
 
 def _make_event(**kwargs):
@@ -110,6 +111,125 @@ class TestNoveltyScore:
         score_seen = score_novelty(ev, seen_artists={"repeat artist"}, seen_venues=set())
         score_new = score_novelty(ev, seen_artists=set(), seen_venues=set())
         assert score_seen < score_new
+
+
+class TestConcertHistorySignal:
+    """Tests for concert_history_signal scoring."""
+
+    MOCK_PROFILE = {
+        "concert_history": {
+            "artists": {
+                "Makaya McCraven": {"affinity": 0.9, "seen": 3},
+                "IDLES": {"affinity": 0.9, "seen": 3},
+                "Jon Hopkins": {"affinity": 0.7, "seen": 1},
+            },
+        },
+    }
+
+    def _artist_entity(self, name):
+        entity = MagicMock()
+        entity.entity_type = "artist"
+        entity.entity_value = name
+        return entity
+
+    @patch("ranking.scorer._load_taste_profile")
+    def test_known_artist_scores_positive(self, mock_profile):
+        mock_profile.return_value = self.MOCK_PROFILE
+        ev = _make_event(entities=[self._artist_entity("Makaya McCraven")])
+        prefs = load_preferences()
+        venues = load_venues()
+        score = concert_history_signal(ev, prefs, venues)
+        assert score > 0
+        assert score == 9.0  # 0.9 * 10
+
+    @patch("ranking.scorer._load_taste_profile")
+    def test_unknown_artist_scores_zero(self, mock_profile):
+        mock_profile.return_value = self.MOCK_PROFILE
+        ev = _make_event(entities=[self._artist_entity("Unknown Artist")])
+        prefs = load_preferences()
+        venues = load_venues()
+        score = concert_history_signal(ev, prefs, venues)
+        assert score == 0.0
+
+    @patch("ranking.scorer._load_taste_profile")
+    def test_repeat_artist_scores_higher(self, mock_profile):
+        mock_profile.return_value = self.MOCK_PROFILE
+        prefs = load_preferences()
+        venues = load_venues()
+
+        ev_repeat = _make_event(entities=[self._artist_entity("IDLES")])
+        ev_single = _make_event(entities=[self._artist_entity("Jon Hopkins")])
+
+        score_repeat = concert_history_signal(ev_repeat, prefs, venues)
+        score_single = concert_history_signal(ev_single, prefs, venues)
+        assert score_repeat > score_single  # 0.9 > 0.7
+
+    @patch("ranking.scorer._load_taste_profile")
+    def test_no_entities_scores_zero(self, mock_profile):
+        mock_profile.return_value = self.MOCK_PROFILE
+        ev = _make_event(entities=[])
+        prefs = load_preferences()
+        venues = load_venues()
+        score = concert_history_signal(ev, prefs, venues)
+        assert score == 0.0
+
+
+class TestConcertMatchReasons:
+    """Tests for 'Seen live' match reasons from concert history."""
+
+    TASTE_DATA = {
+        "concert_history": {
+            "artists": {
+                "IDLES": {"affinity": 0.9, "seen": 3},
+                "Jon Hopkins": {"affinity": 0.7, "seen": 1},
+            },
+        },
+    }
+
+    def _artist_entity(self, name):
+        entity = MagicMock()
+        entity.entity_type = "artist"
+        entity.entity_value = name
+        return entity
+
+    def _mock_open_taste(self, *args, **kwargs):
+        """Return a mock file that yields our test YAML data."""
+        import io
+        import yaml as _yaml
+        content = _yaml.dump(self.TASTE_DATA)
+        return io.StringIO(content)
+
+    @patch("builtins.open")
+    def test_seen_live_in_reasons(self, mock_open):
+        mock_open.side_effect = self._mock_open_taste
+        ev = _make_event(entities=[self._artist_entity("Jon Hopkins")])
+        scores = {
+            "signals": {
+                "concert_history": 7.0,
+                "artist_affinity": 0,
+                "venue_reputation": 0,
+                "category_weight": 0,
+                "home_neighborhood": False,
+            },
+        }
+        reasons = match_reasons(ev, scores, prefs={}, venues={})
+        assert any("Seen live" in r for r in reasons)
+
+    @patch("builtins.open")
+    def test_seen_live_count_shown(self, mock_open):
+        mock_open.side_effect = self._mock_open_taste
+        ev = _make_event(entities=[self._artist_entity("IDLES")])
+        scores = {
+            "signals": {
+                "concert_history": 9.0,
+                "artist_affinity": 0,
+                "venue_reputation": 0,
+                "category_weight": 0,
+                "home_neighborhood": False,
+            },
+        }
+        reasons = match_reasons(ev, scores, prefs={}, venues={})
+        assert "Seen live 3x" in reasons
 
 
 class TestOverallScoring:

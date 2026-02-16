@@ -1,26 +1,46 @@
 artist_affinities:
   Radiohead: 1.0
   Coldplay: 1.0
+  Bon Iver: 0.981
+  65daysofstatic: 0.976
+  The Bronx: 0.973
   Nils Frahm: 0.932
   Theo Croker: 0.9
   Takuya Kuroda: 0.9
+  Alexisonfire: 0.9
+  Brand New: 0.891
+  Leifur James: 0.856
+  Rick Ross: 0.855
+  City and Colour: 0.854
   Drake: 0.852
-  Bon Iver: 0.831
-  65daysofstatic: 0.826
-  The Bronx: 0.823
+  Foals: 0.848
+  Death Grips: 0.829
+  Chance the Rapper: 0.827
+  Pusha T: 0.823
   M83: 0.817
+  IDLES: 0.817
   Lithe: 0.811
+  The Dillinger Escape Plan: 0.809
+  Darkside: 0.808
+  Jon Hopkins: 0.807
+  Four Tet: 0.804
+  Ben Frost: 0.794
+  The Barr Brothers: 0.784
+  Holy Fuck: 0.782
   Fred again..: 0.781
   Lorn: 0.78
   James Blake: 0.779
   Joy Orbison: 0.775
+  Two Gallants: 0.775
   Nina Simone: 0.774
   Kanye West: 0.764
   The Paper Kites: 0.757
+  Tim Hecker: 0.757
   Death Cab for Cutie: 0.753
-  Alexisonfire: 0.75
+  Colin Stetson: 0.751
+  Grouper: 0.748
+  Grappler: 0.745
   Converge: 0.742
-  Brand New: 0.741
   Tourist: 0.74
   Rival Consoles: 0.74
   DJ Shadow: 0.735
@@ -35,13 +55,9 @@ artist_affinities:
   Kendrick Lamar: 0.711
   Arctic Monkeys: 0.708
   Bring Me the Horizon: 0.707
-  Leifur James: 0.706
-  Rick Ross: 0.705
-  City and Colour: 0.704
   Bombay Bicycle Club: 0.703
   Patrick Watson: 0.701
   Phoebe Bridgers: 0.7
-  Foals: 0.698
   Stormzy: 0.696
   Aparde: 0.69
   araabMUZIK: 0.685
@@ -50,38 +66,29 @@ artist_affinities:
   Alessandro Cortini: 0.683
   Al Quetz: 0.682
   GoGo Penguin: 0.681
-  Death Grips: 0.679
-  Chance the Rapper: 0.677
   Childish Gambino: 0.677
   Interpol: 0.675
   Cancer Bats: 0.675
   Fink: 0.673
-  Pusha T: 0.673
   Big Sean: 0.671
   Friendly Fires: 0.671
   J Dilla: 0.668
-  IDLES: 0.667
   Above & Beyond: 0.665
   Bloc Party: 0.664
   Maribou State: 0.663
   Taylor Swift: 0.662
   The Streets: 0.661
-  The Dillinger Escape Plan: 0.659
   Manchester Orchestra: 0.659
-  Darkside: 0.658
-  Jon Hopkins: 0.657
   Jimmy Eat World: 0.656
   Clark: 0.655
   mewithoutYou: 0.655
   Jimi Hendrix: 0.655
   Arcade Fire: 0.654
-  Four Tet: 0.654
   The Maccabees: 0.652
   Deftones: 0.651
   Overmono: 0.649
   Metric: 0.646
   Ludwig van Beethoven: 0.644
-  Ben Frost: 0.644
   Robert Glasper: 0.643
   Efdemin: 0.642
   Miracle Tones: 0.642
@@ -98,9 +105,7 @@ artist_affinities:
   Hozier: 0.635
   Johannes Brahms: 0.635
   Bonobo: 0.635
-  The Barr Brothers: 0.634
   A$AP Rocky: 0.633
-  Holy Fuck: 0.632
   ARAAB MUZIK: 0.631
   Queens of the Stone Age: 0.631
   James Vincent McMorrow: 0.63
@@ -114,7 +119,6 @@ artist_affinities:
   Hatebreed: 0.626
   Adam Gnade: 0.626
   Port St. Willow: 0.626
-  Two Gallants: 0.625
   Dark Dark Dark: 0.625
   Chet Faker: 0.624
   Max Richter: 0.624
@@ -140,7 +144,6 @@ artist_affinities:
   Rolo Tomassi: 0.608
   Tapes 'n Tapes: 0.608
   Tory Lanez: 0.608
-  Tim Hecker: 0.607
   Matthew Halsall: 0.606
   blink-182: 0.605
   Nicholas Britell: 0.604
@@ -149,21 +152,187 @@ artist_affinities:
   Gregory Alan Isakov: 0.604
   Caleb Arredondo: 0.604
   Paul White: 0.601
-  Colin Stetson: 0.601
   Kiasmos: 0.601
   Brad Mehldau: 0.601
   Mura Masa: 0.601
+  Dope Body: 0.6
+  Swans: 0.6
+  Cornelia: 0.6
+  DJ Semtex: 0.6
+  Hookworms: 0.6
+  Jungle: 0.6
+  Makaya Mccraven: 0.6
+  Micachu: 0.6
+  Pete Swanson: 0.6
+  TRAAMS: 0.6
+  Throwing Snow: 0.6
+  Wounds: 0.6
+  patten (DJ/re-edit set): 0.6
+  Abi Wade: 0.6
+  American Nightmare: 0.6
+  Anchorsong: 0.6
+  Angel Haze: 0.6
+  Arclight: 0.6
+  Arkestry: 0.6
+  Axis Of: 0.6
+  BESS ATWELL: 0.6
+  Baby Godzilla: 0.6
+  Bad Breeding: 0.6
+  Balam Acab: 0.6
+  Basement: 0.6
+  Bass Clef: 0.6
+  Bicep: 0.6
+  Big Cosmos: 0.6
+  Big Narstie: 0.6
+  Blaenavon: 0.6
+  Boredoms: 0.6
+  Breton: 0.6
+  Bullion: 0.6
+  CASisDEAD: 0.6
+  CJ Beatz: 0.6
+  Charli XCX DJ Set: 0.6
+  Chastity: 0.6
+  Cherrystones: 0.6
+  Child's Pose: 0.6
+  Clear Plastic Masks: 0.6
+  Cloud Nothings: 0.6
+  Coves: 0.6
+  Crushed Beaks: 0.6
+  Crvvcks: 0.6
+  Cult Cinema: 0.6
+  Dahga Bloom: 0.6
+  Dark Sky: 0.6
+  Dave Currie: 0.6
+  Dawes: 0.6
+  Dead Meadow: 0.6
+  Demonstrations: 0.6
+  Departures: 0.6
+  Despot: 0.6
+  Django Django: 0.6
+  Dream Mclean: 0.6
+  DāM-FunK: 0.6
+  El-P: 0.6
+  Everything Everything: 0.6
+  Eyedress: 0.6
+  Flume: 0.6
+  GAPS: 0.6
+  Ghosting Season: 0.6
+  Glitches: 0.6
+  Goodtime Boys: 0.6
+  Grieved: 0.6
+  Hallucination Blues Dj Sets: 0.6
+  Harlem Spartans: 0.6
+  Heavy Lungs: 0.6
+  Helm: 0.6
+  Her Parents: 0.6
+  High Water: 0.6
+  Hot Chip: 0.6
+  Hurray for the Riff Raff: 0.6
+  I Was a Cub Scout: 0.6
+  IYES: 0.6
+  Ice, Sea, Dead People: 0.6
+  Indian Wells: 0.6
+  Jack Cheshire: 0.6
+  Jacques Gaspard Biberkopf: 0.6
+  Jake Long: 0.6
+  Jenny Hval: 0.6
+  Jolta: 0.6
+  Josh Vine: 0.6
+  Kara-Lis Coverdale: 0.6
+  Karen Gwyer: 0.6
+  King Krule: 0.6
+  Kirk Spencer: 0.6
+  Kite Base: 0.6
+  Koreless: 0.6
+  Kutmah: 0.6
+  Lab Coast: 0.6
+  Laura Cannell: 0.6
+  Laurel Halo: 0.6
+  Leon Bridges: 0.6
+  Lime Headed Dog: 0.6
+  London Contemporary Orchestra: 0.6
+  Low Moon Low: 0.6
+  Lowell: 0.6
+  Luke Abbott: 0.6
+  Manny Norte: 0.6
+  Maybeshewill: 0.6
+  Mercury Rev: 0.6
+  Metz: 0.6
+  Micachu & The Shapes: 0.6
+  Micachu Dj Set: 0.6
+  Mikaela Davis: 0.6
+  Mint: 0.6
+  Moon Gangs: 0.6
+  More Than Life: 0.6
+  Moto & Bagheera: 0.6
+  Nathan Detroit: 0.6
+  New Desert Blues: 0.6
+  Only Real: 0.6
+  PAPA: 0.6
+  Pangaea: 0.6
+  Pettybone: 0.6
+  Polar States: 0.6
+  Portico: 0.6
+  Portugal. The Man: 0.6
+  Psychemagik: 0.6
+  Raime (DJ set): 0.6
+  Ratking: 0.6
+  Refused: 0.6
+  Rezzett: 0.6
+  Romare: 0.6
+  Rosie Turton: 0.6
+  Ross From Friends: 0.6
+  Ryley Walker: 0.6
+  SOHN: 0.6
+  Sarah Harrison: 0.6
+  Seams: 0.6
+  Seán McGowan: 0.6
+  Sian Anderson: 0.6
+  Sinjin Hawke: 0.6
+  Sinkane: 0.6
+  Sir Richard Bishop: 0.6
+  Slow Club: 0.6
+  Snips (Livin Proof): 0.6
+  Solid Gold Dragons: 0.6
+  Sundara Karma: 0.6
+  T. Williams: 0.6
+  Taylor McFerrin: 0.6
+  The Big Bumble Bees: 0.6
+  The Bug: 0.6
+  The Busy Twist: 0.6
+  The Districts: 0.6
+  The Gaslamp Killer: 0.6
+  The Haxan Cloak: 0.6
+  The Physics House Band: 0.6
+  The Wytches: 0.6
+  Them Wolves: 0.6
+  Three Trapped Tigers: 0.6
+  Thunderbird Gerard: 0.6
+  Tom Vek: 0.6
+  Tonstartssbandht: 0.6
+  USA Nails: 0.6
+  Up River: 0.6
+  VALENTIN STIP DJ: 0.6
+  Vic Mensa: 0.6
+  Virginia Wing: 0.6
+  Woodpecker Wooliams: 0.6
+  Woody Woodmansey's Holy Holy: 0.6
+  Xiu Xiu: 0.6
+  Yxng Bane: 0.6
+  clipping.: 0.6
+  emufucka: 0.6
+  oOoOO: 0.6
+  robinn: 0.6
+  sleepmakeswaves: 0.6
   Big Thief: 0.599
   Mumford & Sons: 0.599
   Broken Social Scene: 0.598
   The Rolling Stones: 0.598
-  Grouper: 0.598
   Lydia: 0.597
   Pharoah Sanders: 0.597
   Skeler: 0.597
   Bobby Raps: 0.597
   Darlingside: 0.596
-  Grappler: 0.595
   The Doors: 0.594
   The Middle East: 0.593
   Rusko: 0.593
@@ -202,5 +371,788 @@ artist_affinities:
 lastfm_synced: true
 lastfm_username: dustpunk
 manual_artists:
-- Theo Croker
+- 65daysofstatic
+- Abi Wade
+- Alexisonfire
+- American Nightmare
+- Anchorsong
+- Angel Haze
+- Arclight
+- Arkestry
+- Axis Of
+- BESS ATWELL
+- Baby Godzilla
+- Bad Breeding
+- Balam Acab
+- Basement
+- Bass Clef
+- Ben Frost
+- Bicep
+- Big Cosmos
+- Big Narstie
+- Blaenavon
+- Bon Iver
+- Boredoms
+- Brand New
+- Breton
+- Bullion
+- CASisDEAD
+- CJ Beatz
+- Chance the Rapper
+- Charli XCX DJ Set
+- Chastity
+- Cherrystones
+- Child's Pose
+- City and Colour
+- Clear Plastic Masks
+- Cloud Nothings
+- Colin Stetson
+- Cornelia
+- Coves
+- Crushed Beaks
+- Crvvcks
+- Cult Cinema
+- DJ Semtex
+- Dahga Bloom
+- Dark Sky
+- Darkside
+- Dave Currie
+- Dawes
+- Dead Meadow
+- Death Grips
+- Demonstrations
+- Departures
+- Despot
+- Django Django
+- Dope Body
+- Dream Mclean
+- DāM-FunK
+- El-P
+- Everything Everything
+- Eyedress
+- Flume
+- Foals
+- Four Tet
+- GAPS
+- Ghosting Season
+- Glitches
+- Goodtime Boys
+- Grappler
+- Grieved
+- Grouper
+- Hallucination Blues Dj Sets
+- Harlem Spartans
+- Heavy Lungs
+- Helm
+- Her Parents
+- High Water
+- Holy Fuck
+- Hookworms
+- Hot Chip
+- Hurray for the Riff Raff
+- I Was a Cub Scout
+- IDLES
+- IYES
+- Ice, Sea, Dead People
+- Indian Wells
+- Jack Cheshire
+- Jacques Gaspard Biberkopf
+- Jake Long
+- Jenny Hval
+- Jolta
+- Jon Hopkins
+- Josh Vine
+- Jungle
+- Kara-Lis Coverdale
+- Karen Gwyer
+- King Krule
+- Kirk Spencer
+- Kite Base
+- Koreless
+- Kutmah
+- Lab Coast
+- Laura Cannell
+- Laurel Halo
+- Leifur James
+- Leon Bridges
+- Lime Headed Dog
+- London Contemporary Orchestra
+- Low Moon Low
+- Lowell
+- Luke Abbott
+- Makaya Mccraven
+- Manny Norte
+- Maybeshewill
+- Mercury Rev
+- Metz
+- Micachu
+- Micachu & The Shapes
+- Micachu Dj Set
+- Mikaela Davis
+- Mint
+- Moon Gangs
+- More Than Life
+- Moto & Bagheera
+- Nathan Detroit
+- New Desert Blues
+- Only Real
+- PAPA
+- Pangaea
+- Pete Swanson
+- Pettybone
+- Polar States
+- Portico
+- Portugal. The Man
+- Psychemagik
+- Pusha T
+- Raime (DJ set)
+- Ratking
+- Refused
+- Rezzett
+- Rick Ross
+- Romare
+- Rosie Turton
+- Ross From Friends
+- Ryley Walker
+- SOHN
+- Sarah Harrison
+- Seams
+- Seán McGowan
+- Sian Anderson
+- Sinjin Hawke
+- Sinkane
+- Sir Richard Bishop
+- Slow Club
+- Snips (Livin Proof)
+- Solid Gold Dragons
+- Sundara Karma
+- Swans
+- T. Williams
+- TRAAMS
 - Takuya Kuroda
+- Taylor McFerrin
+- The Barr Brothers
+- The Big Bumble Bees
+- The Bronx
+- The Bug
+- The Busy Twist
+- The Dillinger Escape Plan
+- The Districts
+- The Gaslamp Killer
+- The Haxan Cloak
+- The Physics House Band
+- The Wytches
+- Them Wolves
+- Theo Croker
+- Three Trapped Tigers
+- Throwing Snow
+- Thunderbird Gerard
+- Tim Hecker
+- Tom Vek
+- Tonstartssbandht
+- Two Gallants
+- USA Nails
+- Up River
+- VALENTIN STIP DJ
+- Vic Mensa
+- Virginia Wing
+- Woodpecker Wooliams
+- Woody Woodmansey's Holy Holy
+- Wounds
+- Xiu Xiu
+- Yxng Bane
+- clipping.
+- emufucka
+- oOoOO
+- patten (DJ/re-edit set)
+- robinn
+- sleepmakeswaves
+concert_history:
+  artists:
+    Dope Body:
+      affinity: 0.9
+      seen: 3
+    Swans:
+      affinity: 0.9
+      seen: 3
+    65daysofstatic:
+      affinity: 0.8
+      seen: 2
+    Ben Frost:
+      affinity: 0.8
+      seen: 2
+    Cornelia:
+      affinity: 0.8
+      seen: 2
+    DJ Semtex:
+      affinity: 0.8
+      seen: 2
+    Hookworms:
+      affinity: 0.8
+      seen: 2
+    IDLES:
+      affinity: 0.8
+      seen: 2
+    Jungle:
+      affinity: 0.8
+      seen: 2
+    Makaya Mccraven:
+      affinity: 0.8
+      seen: 2
+    Micachu:
+      affinity: 0.8
+      seen: 2
+    Pete Swanson:
+      affinity: 0.8
+      seen: 2
+    Pusha T:
+      affinity: 0.8
+      seen: 2
+    TRAAMS:
+      affinity: 0.8
+      seen: 2
+    The Bronx:
+      affinity: 0.8
+      seen: 2
+    Throwing Snow:
+      affinity: 0.8
+      seen: 2
+    Wounds:
+      affinity: 0.8
+      seen: 2
+    patten (DJ/re-edit set):
+      affinity: 0.8
+      seen: 2
+    Abi Wade:
+      affinity: 0.7
+      seen: 1
+    Alexisonfire:
+      affinity: 0.7
+      seen: 1
+    American Nightmare:
+      affinity: 0.7
+      seen: 1
+    Anchorsong:
+      affinity: 0.7
+      seen: 1
+    Angel Haze:
+      affinity: 0.7
+      seen: 1
+    Arclight:
+      affinity: 0.7
+      seen: 1
+    Arkestry:
+      affinity: 0.7
+      seen: 1
+    Axis Of:
+      affinity: 0.7
+      seen: 1
+    BESS ATWELL:
+      affinity: 0.7
+      seen: 1
+    Baby Godzilla:
+      affinity: 0.7
+      seen: 1
+    Bad Breeding:
+      affinity: 0.7
+      seen: 1
+    Balam Acab:
+      affinity: 0.7
+      seen: 1
+    Basement:
+      affinity: 0.7
+      seen: 1
+    Bass Clef:
+      affinity: 0.7
+      seen: 1
+    Bicep:
+      affinity: 0.7
+      seen: 1
+    Big Cosmos:
+      affinity: 0.7
+      seen: 1
+    Big Narstie:
+      affinity: 0.7
+      seen: 1
+    Blaenavon:
+      affinity: 0.7
+      seen: 1
+    Bon Iver:
+      affinity: 0.7
+      seen: 1
+    Boredoms:
+      affinity: 0.7
+      seen: 1
+    Brand New:
+      affinity: 0.7
+      seen: 1
+    Breton:
+      affinity: 0.7
+      seen: 1
+    Bullion:
+      affinity: 0.7
+      seen: 1
+    CASisDEAD:
+      affinity: 0.7
+      seen: 1
+    CJ Beatz:
+      affinity: 0.7
+      seen: 1
+    Chance the Rapper:
+      affinity: 0.7
+      seen: 1
+    Charli XCX DJ Set:
+      affinity: 0.7
+      seen: 1
+    Chastity:
+      affinity: 0.7
+      seen: 1
+    Cherrystones:
+      affinity: 0.7
+      seen: 1
+    Child's Pose:
+      affinity: 0.7
+      seen: 1
+    City and Colour:
+      affinity: 0.7
+      seen: 1
+    Clear Plastic Masks:
+      affinity: 0.7
+      seen: 1
+    Cloud Nothings:
+      affinity: 0.7
+      seen: 1
+    Colin Stetson:
+      affinity: 0.7
+      seen: 1
+    Coves:
+      affinity: 0.7
+      seen: 1
+    Crushed Beaks:
+      affinity: 0.7
+      seen: 1
+    Crvvcks:
+      affinity: 0.7
+      seen: 1
+    Cult Cinema:
+      affinity: 0.7
+      seen: 1
+    Dahga Bloom:
+      affinity: 0.7
+      seen: 1
+    Dark Sky:
+      affinity: 0.7
+      seen: 1
+    Darkside:
+      affinity: 0.7
+      seen: 1
+    Dave Currie:
+      affinity: 0.7
+      seen: 1
+    Dawes:
+      affinity: 0.7
+      seen: 1
+    Dead Meadow:
+      affinity: 0.7
+      seen: 1
+    Death Grips:
+      affinity: 0.7
+      seen: 1
+    Demonstrations:
+      affinity: 0.7
+      seen: 1
+    Departures:
+      affinity: 0.7
+      seen: 1
+    Despot:
+      affinity: 0.7
+      seen: 1
+    Django Django:
+      affinity: 0.7
+      seen: 1
+    Dream Mclean:
+      affinity: 0.7
+      seen: 1
+    DāM-FunK:
+      affinity: 0.7
+      seen: 1
+    El-P:
+      affinity: 0.7
+      seen: 1
+    Everything Everything:
+      affinity: 0.7
+      seen: 1
+    Eyedress:
+      affinity: 0.7
+      seen: 1
+    Flume:
+      affinity: 0.7
+      seen: 1
+    Foals:
+      affinity: 0.7
+      seen: 1
+    Four Tet:
+      affinity: 0.7
+      seen: 1
+    GAPS:
+      affinity: 0.7
+      seen: 1
+    Ghosting Season:
+      affinity: 0.7
+      seen: 1
+    Glitches:
+      affinity: 0.7
+      seen: 1
+    Goodtime Boys:
+      affinity: 0.7
+      seen: 1
+    Grappler:
+      affinity: 0.7
+      seen: 1
+    Grieved:
+      affinity: 0.7
+      seen: 1
+    Grouper:
+      affinity: 0.7
+      seen: 1
+    Hallucination Blues Dj Sets:
+      affinity: 0.7
+      seen: 1
+    Harlem Spartans:
+      affinity: 0.7
+      seen: 1
+    Heavy Lungs:
+      affinity: 0.7
+      seen: 1
+    Helm:
+      affinity: 0.7
+      seen: 1
+    Her Parents:
+      affinity: 0.7
+      seen: 1
+    High Water:
+      affinity: 0.7
+      seen: 1
+    Holy Fuck:
+      affinity: 0.7
+      seen: 1
+    Hot Chip:
+      affinity: 0.7
+      seen: 1
+    Hurray for the Riff Raff:
+      affinity: 0.7
+      seen: 1
+    I Was a Cub Scout:
+      affinity: 0.7
+      seen: 1
+    IYES:
+      affinity: 0.7
+      seen: 1
+    Ice, Sea, Dead People:
+      affinity: 0.7
+      seen: 1
+    Indian Wells:
+      affinity: 0.7
+      seen: 1
+    Jack Cheshire:
+      affinity: 0.7
+      seen: 1
+    Jacques Gaspard Biberkopf:
+      affinity: 0.7
+      seen: 1
+    Jake Long:
+      affinity: 0.7
+      seen: 1
+    Jenny Hval:
+      affinity: 0.7
+      seen: 1
+    Jolta:
+      affinity: 0.7
+      seen: 1
+    Jon Hopkins:
+      affinity: 0.7
+      seen: 1
+    Josh Vine:
+      affinity: 0.7
+      seen: 1
+    Kara-Lis Coverdale:
+      affinity: 0.7
+      seen: 1
+    Karen Gwyer:
+      affinity: 0.7
+      seen: 1
+    King Krule:
+      affinity: 0.7
+      seen: 1
+    Kirk Spencer:
+      affinity: 0.7
+      seen: 1
+    Kite Base:
+      affinity: 0.7
+      seen: 1
+    Koreless:
+      affinity: 0.7
+      seen: 1
+    Kutmah:
+      affinity: 0.7
+      seen: 1
+    Lab Coast:
+      affinity: 0.7
+      seen: 1
+    Laura Cannell:
+      affinity: 0.7
+      seen: 1
+    Laurel Halo:
+      affinity: 0.7
+      seen: 1
+    Leifur James:
+      affinity: 0.7
+      seen: 1
+    Leon Bridges:
+      affinity: 0.7
+      seen: 1
+    Lime Headed Dog:
+      affinity: 0.7
+      seen: 1
+    London Contemporary Orchestra:
+      affinity: 0.7
+      seen: 1
+    Low Moon Low:
+      affinity: 0.7
+      seen: 1
+    Lowell:
+      affinity: 0.7
+      seen: 1
+    Luke Abbott:
+      affinity: 0.7
+      seen: 1
+    Manny Norte:
+      affinity: 0.7
+      seen: 1
+    Maybeshewill:
+      affinity: 0.7
+      seen: 1
+    Mercury Rev:
+      affinity: 0.7
+      seen: 1
+    Metz:
+      affinity: 0.7
+      seen: 1
+    Micachu & The Shapes:
+      affinity: 0.7
+      seen: 1
+    Micachu Dj Set:
+      affinity: 0.7
+      seen: 1
+    Mikaela Davis:
+      affinity: 0.7
+      seen: 1
+    Mint:
+      affinity: 0.7
+      seen: 1
+    Moon Gangs:
+      affinity: 0.7
+      seen: 1
+    More Than Life:
+      affinity: 0.7
+      seen: 1
+    Moto & Bagheera:
+      affinity: 0.7
+      seen: 1
+    Nathan Detroit:
+      affinity: 0.7
+      seen: 1
+    New Desert Blues:
+      affinity: 0.7
+      seen: 1
+    Only Real:
+      affinity: 0.7
+      seen: 1
+    PAPA:
+      affinity: 0.7
+      seen: 1
+    Pangaea:
+      affinity: 0.7
+      seen: 1
+    Pettybone:
+      affinity: 0.7
+      seen: 1
+    Polar States:
+      affinity: 0.7
+      seen: 1
+    Portico:
+      affinity: 0.7
+      seen: 1
+    Portugal. The Man:
+      affinity: 0.7
+      seen: 1
+    Psychemagik:
+      affinity: 0.7
+      seen: 1
+    Raime (DJ set):
+      affinity: 0.7
+      seen: 1
+    Ratking:
+      affinity: 0.7
+      seen: 1
+    Refused:
+      affinity: 0.7
+      seen: 1
+    Rezzett:
+      affinity: 0.7
+      seen: 1
+    Rick Ross:
+      affinity: 0.7
+      seen: 1
+    Romare:
+      affinity: 0.7
+      seen: 1
+    Rosie Turton:
+      affinity: 0.7
+      seen: 1
+    Ross From Friends:
+      affinity: 0.7
+      seen: 1
+    Ryley Walker:
+      affinity: 0.7
+      seen: 1
+    SOHN:
+      affinity: 0.7
+      seen: 1
+    Sarah Harrison:
+      affinity: 0.7
+      seen: 1
+    Seams:
+      affinity: 0.7
+      seen: 1
+    Seán McGowan:
+      affinity: 0.7
+      seen: 1
+    Sian Anderson:
+      affinity: 0.7
+      seen: 1
+    Sinjin Hawke:
+      affinity: 0.7
+      seen: 1
+    Sinkane:
+      affinity: 0.7
+      seen: 1
+    Sir Richard Bishop:
+      affinity: 0.7
+      seen: 1
+    Slow Club:
+      affinity: 0.7
+      seen: 1
+    Snips (Livin Proof):
+      affinity: 0.7
+      seen: 1
+    Solid Gold Dragons:
+      affinity: 0.7
+      seen: 1
+    Sundara Karma:
+      affinity: 0.7
+      seen: 1
+    T. Williams:
+      affinity: 0.7
+      seen: 1
+    Taylor McFerrin:
+      affinity: 0.7
+      seen: 1
+    The Barr Brothers:
+      affinity: 0.7
+      seen: 1
+    The Big Bumble Bees:
+      affinity: 0.7
+      seen: 1
+    The Bug:
+      affinity: 0.7
+      seen: 1
+    The Busy Twist:
+      affinity: 0.7
+      seen: 1
+    The Dillinger Escape Plan:
+      affinity: 0.7
+      seen: 1
+    The Districts:
+      affinity: 0.7
+      seen: 1
+    The Gaslamp Killer:
+      affinity: 0.7
+      seen: 1
+    The Haxan Cloak:
+      affinity: 0.7
+      seen: 1
+    The Physics House Band:
+      affinity: 0.7
+      seen: 1
+    The Wytches:
+      affinity: 0.7
+      seen: 1
+    Them Wolves:
+      affinity: 0.7
+      seen: 1
+    Three Trapped Tigers:
+      affinity: 0.7
+      seen: 1
+    Thunderbird Gerard:
+      affinity: 0.7
+      seen: 1
+    Tim Hecker:
+      affinity: 0.7
+      seen: 1
+    Tom Vek:
+      affinity: 0.7
+      seen: 1
+    Tonstartssbandht:
+      affinity: 0.7
+      seen: 1
+    Two Gallants:
+      affinity: 0.7
+      seen: 1
+    USA Nails:
+      affinity: 0.7
+      seen: 1
+    Up River:
+      affinity: 0.7
+      seen: 1
+    VALENTIN STIP DJ:
+      affinity: 0.7
+      seen: 1
+    Vic Mensa:
+      affinity: 0.7
+      seen: 1
+    Virginia Wing:
+      affinity: 0.7
+      seen: 1
+    Woodpecker Wooliams:
+      affinity: 0.7
+      seen: 1
+    Woody Woodmansey's Holy Holy:
+      affinity: 0.7
+      seen: 1
+    Xiu Xiu:
+      affinity: 0.7
+      seen: 1
+    Yxng Bane:
+      affinity: 0.7
+      seen: 1
+    clipping.:
+      affinity: 0.7
+      seen: 1
+    emufucka:
+      affinity: 0.7
+      seen: 1
+    oOoOO:
+      affinity: 0.7
+      seen: 1
+    robinn:
+      affinity: 0.7
+      seen: 1
+    sleepmakeswaves:
+      affinity: 0.7
+      seen: 1
+  total_concerts: 93
+  source: songkick
+  source_files:
+  - Gigography2_files/Gigography1.htm
+  - Gigography2.htm

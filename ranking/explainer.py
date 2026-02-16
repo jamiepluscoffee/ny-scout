@@ -179,9 +179,34 @@ def match_reasons(event, scores: dict, prefs: dict = None, venues: dict = None) 
     signals = scores.get("signals", {})
     reasons = []
 
+    # Concert history — strongest signal, show first
+    concert_signal = signals.get("concert_history", 0)
+    if concert_signal > 0:
+        # Look up seen count from taste_profile
+        config_dir = os.path.join(os.path.dirname(__file__), "..", "config")
+        try:
+            with open(os.path.join(config_dir, "taste_profile.yaml")) as f:
+                taste = yaml.safe_load(f) or {}
+            concert_artists = taste.get("concert_history", {}).get("artists", {})
+            # Find best matching artist to get seen count
+            artist_names = [e.entity_value for e in event.entities if e.entity_type == "artist"]
+            seen_count = 1
+            for artist in artist_names:
+                for known, stats in concert_artists.items():
+                    if fuzz.ratio(artist.lower(), known.lower()) > 85:
+                        count = stats.get("seen", 1) if isinstance(stats, dict) else 1
+                        seen_count = max(seen_count, count)
+                        break
+            if seen_count >= 2:
+                reasons.append(f"Seen live {seen_count}x")
+            else:
+                reasons.append("Seen live")
+        except Exception:
+            reasons.append("Seen live")
+
     # Artist affinity (listening history signal returns 0-10, affinity is value/10)
     artist_affinity = signals.get("artist_affinity", 0)
-    if artist_affinity > 0:
+    if artist_affinity > 0 and len(reasons) < 2:
         pct = int(round(artist_affinity * 10))
         reasons.append(f"{pct}% Artist Match")
 
