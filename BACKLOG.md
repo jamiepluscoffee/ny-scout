@@ -10,7 +10,8 @@
 ## Current Theme: Data Quality & Coverage
 > Goal: More events, better data, fewer junk results
 
-- [ ] Expand Ticketmaster date range beyond 14 days (for Coming Up section)
+- [x] Expand Ticketmaster date range beyond 14 days (for Coming Up section)
+  > Extended to 90-day window. Sorted by `onSaleStartDate,asc` to catch newly announced shows. Paginated up to 200/run (1000 in backfill mode). Added `--backfill` flag for one-time full pull with scoped prune of low-scoring events.
 - [ ] Filter out junk events (e.g. "COMING SOON!" placeholder from Vanguard scraper)
 - [ ] Fix Jazz Gallery DNS / find alternative calendar source
 - [x] Playwright adapter for JS-rendered sites (Smalls, LPR, future sources)
@@ -30,8 +31,8 @@
 - **Art Taste Intelligence** — Build an art/exhibition taste profile parallel to music. Need sources for gallery/museum exhibitions, a way to express art preferences (artists, movements, mediums, galleries), and a scoring signal that ranks exhibitions by personal interest. Different category from music — can't use Last.fm for this.
 - **New Event Alerts** — Detect newly announced events and surface them early so Jamie can buy tickets before they sell out. Regular scans for "what's new since last check" rather than just "what's happening this week."
 - **Personal Event Index** — ~~Transform the app from a weekly digest into a comprehensive, always-up-to-date index of everything happening in NYC, scored by personal relevance. Sortable by relevance or date. Current "picks" become a separate tab/page. This is the big vision shift.~~ → Built as v1 in "UI Redesign" theme below.
-- **Digest Polish** — Improve email formatting, add unsubscribe, mobile styling
-- **More Sources** — Add Dizzy's Club, Birdland, Carnegie Hall, Le Poisson Rouge scrapers
+- **Digest Polish** — Improve mobile styling, visual tweaks
+- **More Sources** — Add Dizzy's Club, Birdland, Carnegie Hall scrapers
 
 ## Icebox
 > Ideas for later — not prioritized yet
@@ -91,7 +92,7 @@
 ### Theme: MVP Launch ✓
 - [x] Core ingestion pipeline (6 sources)
 - [x] Scoring engine (taste + convenience + social + novelty)
-- [x] Email digest renderer
+- [x] ~~Email digest renderer~~ Removed — web-only digest, no email service needed
 - [x] Web dashboard + GitHub Pages deployment
 - [x] GitHub Actions daily automation
 - [x] "Coming Up" section (1-6 weeks out)
