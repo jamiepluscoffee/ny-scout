@@ -1,7 +1,7 @@
 """Generate static HTML pages for the web dashboard — The Radar + The Full List."""
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from html import escape
 from math import ceil
 
@@ -45,7 +45,8 @@ def _format_lead_time(event) -> str:
     dt = event.start_dt
     if not hasattr(dt, "date"):
         return ""
-    days_out = (dt - datetime.now()).days
+    now = datetime.now(timezone.utc) if dt.tzinfo else datetime.now()
+    days_out = (dt - now).days
     if days_out < 14:
         return f"in {days_out} days"
     weeks = ceil(days_out / 7)
@@ -82,8 +83,11 @@ def _render_event_card(event, scores, prefs=None, venues=None, lead_time: str = 
     if lead_time:
         lead_time_html = f'<div class="event-lead-time">{lead_time}</div>'
 
+    start_iso = event.start_dt.isoformat() if hasattr(event.start_dt, "isoformat") else str(event.start_dt)
+    event_id = f"{event.title}|{event.venue_name}|{start_iso}"
+
     return f"""
-      <article class="event-card">
+      <article class="event-card" data-event-id="{escape(event_id)}">
         <div class="event-card-body">
           <div class="event-card-info">
             <div class="event-artist">{title}</div>
@@ -140,14 +144,16 @@ def _event_to_json(event, scores, prefs=None, venues=None) -> dict:
     except Exception:
         pass
 
+    start_iso = event.start_dt.isoformat() if hasattr(event.start_dt, "isoformat") else str(event.start_dt)
     return {
+        "id": f"{event.title}|{event.venue_name}|{start_iso}",
         "title": event.title,
         "venue": event.venue_name,
         "neighborhood": event.neighborhood or "",
         "artists": ", ".join(artists),
         "day": _format_day(event),
         "time": _format_time(event),
-        "start_dt": event.start_dt.isoformat() if hasattr(event.start_dt, "isoformat") else str(event.start_dt),
+        "start_dt": start_iso,
         "price": _format_price(event),
         "score": round(scores.get("total", 0), 1),
         "match_reasons": reasons,
@@ -162,8 +168,19 @@ def render_web(radar_events: list[tuple], output_dir: str = None, prefs: dict = 
     sidebar = _sidebar_html("radar")
 
     cards_html = ""
+    radar_json_list = []
     for ev, scores in radar_events:
         cards_html += _render_event_card(ev, scores, prefs, venues, lead_time=_format_lead_time(ev))
+        try:
+            entities = ev._prefetched_entities if hasattr(ev, "_prefetched_entities") else list(ev.entities)
+            original = ev.entities
+            ev.entities = entities
+            radar_json_list.append(_event_to_json(ev, scores, prefs, venues))
+            ev.entities = original
+        except Exception:
+            radar_json_list.append(_event_to_json(ev, scores, prefs, venues))
+
+    radar_json_str = json.dumps(radar_json_list, ensure_ascii=False)
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -178,6 +195,8 @@ def render_web(radar_events: list[tuple], output_dir: str = None, prefs: dict = 
   <div class="main-content">
     <h1 class="page-title">The Radar</h1>
 
+    <div id="going-section"></div>
+
     <div class="digest-header">
       <span class="digest-title">The Digest</span>
       <span class="digest-subtitle">Curated for <strong>Jamie</strong></span>
@@ -189,6 +208,8 @@ def render_web(radar_events: list[tuple], output_dir: str = None, prefs: dict = 
       <p>NYC Scout &middot; Curated for Jamie</p>
     </footer>
   </div>
+  <script id="radar-data" type="application/json">{radar_json_str}</script>
+  <script src="app.js"></script>
 </body>
 </html>"""
 

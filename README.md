@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 # Configure
 cp .env.example .env
-# Edit .env with your API keys and SMTP credentials
+# Edit .env with your API keys
 
 # Initialize database
 python -c "from db.models import init_db; init_db()"
@@ -20,10 +20,10 @@ python -c "from db.models import init_db; init_db()"
 # Run ingestion (fetch events from all sources)
 python scripts/run_ingest.py
 
-# Generate and send digest
+# Generate web digest
 python scripts/run_digest.py
 
-# Or preview without sending
+# Preview without writing files
 python scripts/run_digest.py --dry-run
 ```
 
@@ -57,12 +57,10 @@ python scripts/run_digest.py --dry-run
 
 The included workflow (`.github/workflows/daily.yml`) runs daily:
 - Ingestion at ~8:30 AM ET
-- Digest generation + email + web update at ~9:00 AM ET
+- Digest generation + web update at ~9:00 AM ET
 
 Add your secrets in GitHub repo Settings → Secrets:
 - `TICKETMASTER_API_KEY`
-- `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`
-- `DIGEST_RECIPIENT`
 - `ANTHROPIC_API_KEY` / `LLM_PROVIDER` (optional)
 
 ### Local cron
