@@ -85,6 +85,14 @@ sources:
       strategy: json_ld
       default_venue: Warsaw
 
+  - name: public_records
+    url: "https://publicrecords.nyc/"
+    category: concert
+    method: scrape
+    parser_module: ingestion.sources.public_records
+    cadence: daily
+    enabled: true
+
   - name: intlanthem
     url: "https://www.intlanthem.com/shows"
     category: concert

@@ -111,6 +111,14 @@ venues:
     capacity: 850
     seated: false
 
+  "Public Records":
+    neighborhood: "Gowanus"
+    lat: 40.6812
+    lon: -73.9856
+    vibe_tags: [eclectic, multi-room, club, late-night, plant-based]
+    capacity: 300
+    seated: false
+
   "Barbès":
     neighborhood: "Park Slope"
     lat: 40.6729
