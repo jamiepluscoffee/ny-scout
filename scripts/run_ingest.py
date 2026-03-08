@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from dotenv import load_dotenv
 load_dotenv()
 
-from ingestion.runner import run_ingestion
+from ingestion.runner import run_ingestion, prune_low_scoring
 from ingestion.discovery import run_discovery, add_link
 
 
@@ -23,6 +23,8 @@ def main():
                         help="Process pending links from discovered_links.yaml")
     parser.add_argument("--add-link", metavar="URL",
                         help="Add a URL to discovered_links.yaml and process it")
+    parser.add_argument("--backfill", action="store_true",
+                        help="Full 90-day paginated pull (Ticketmaster), then prune low-scoring events")
     args = parser.parse_args()
 
     level = logging.DEBUG if args.verbose else logging.INFO
@@ -53,9 +55,13 @@ def main():
         return
 
     # Normal ingestion
-    stats = run_ingestion(source_filter=args.source)
+    stats = run_ingestion(source_filter=args.source, backfill=args.backfill)
     print(f"\nIngestion complete: {stats['success']} sources OK, "
           f"{stats['failed']} failed, {stats['events_stored']} new events stored")
+
+    if args.backfill:
+        pruned = prune_low_scoring(source_name="ticketmaster")
+        print(f"Backfill prune: removed {pruned} low-scoring Ticketmaster events")
 
     if stats["failed"] > 0:
         sys.exit(1)

@@ -200,7 +200,43 @@ def enrich_events(venues_config: dict):
     return enriched
 
 
-def run_ingestion(source_filter: str = None):
+def prune_low_scoring(source_name: str = None, min_score: float = 25.0) -> int:
+    """Delete events that score below min_score. Returns count of pruned events.
+
+    If source_name is given, only prune events from that source.
+    """
+    from ranking.scorer import score_event, load_preferences, load_venues
+
+    prefs = load_preferences()
+    venues = load_venues()
+
+    query = Event.select().where(Event.status == "active")
+    if source_name:
+        source = Source.get_or_none(Source.name == source_name)
+        if source:
+            query = query.where(Event.source == source)
+        else:
+            logger.warning(f"Prune: source '{source_name}' not found, skipping")
+            return 0
+
+    events = list(query)
+    pruned = 0
+    kept = 0
+    for ev in events:
+        ev.entities = list(EventEntity.select().where(EventEntity.event == ev.id))
+        scores = score_event(ev, prefs, venues, set(), set())
+        if scores["total"] < min_score:
+            EventEntity.delete().where(EventEntity.event == ev.id).execute()
+            ev.delete_instance()
+            pruned += 1
+        else:
+            kept += 1
+
+    logger.info(f"Prune: removed {pruned} low-scoring events, kept {kept} (source: {source_name or 'all'})")
+    return pruned
+
+
+def run_ingestion(source_filter: str = None, backfill: bool = False):
     """Main ingestion entry point."""
     init_db()
     sources_config = load_sources_config()
@@ -216,6 +252,10 @@ def run_ingestion(source_filter: str = None):
 
         source = ensure_source_record(src_cfg)
         adapter = get_adapter(src_cfg)
+
+        # Enable backfill mode for adapters that support it
+        if backfill and hasattr(adapter, "set_backfill"):
+            adapter.set_backfill(True)
 
         retries = 3
         for attempt in range(1, retries + 1):

@@ -9,20 +9,24 @@ from ingestion.base import EventDict
 class Adapter(JSONAPIAdapter):
     """Fetch NYC music/arts events from Ticketmaster Discovery API v2."""
 
-    DMA_ID = "324"  # NYC DMA
     BASE_URL = "https://app.ticketmaster.com/discovery/v2/events.json"
+    PAGE_SIZE = 200  # Ticketmaster max per page
+    MAX_PAGES = 5    # API caps at 1000 results (5 * 200)
 
-    def fetch_raw(self) -> dict:
-        api_key = os.environ.get("TICKETMASTER_API_KEY", "")
-        if not api_key:
-            self.logger.warning("TICKETMASTER_API_KEY not set, skipping")
-            return {"_embedded": {"events": []}}
+    def __init__(self, source_cfg: dict):
+        super().__init__(source_cfg)
+        self._backfill = False
 
+    def set_backfill(self, enabled: bool):
+        self._backfill = enabled
+
+    def _base_params(self, api_key: str) -> dict:
         now = datetime.utcnow()
         start = now.strftime("%Y-%m-%dT%H:%M:%SZ")
-        end = (now + timedelta(days=14)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        days = 90 if self._backfill else 90
+        end = (now + timedelta(days=days)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-        params = {
+        return {
             "apikey": api_key,
             "latlong": "40.7128,-74.0060",
             "radius": "15",
@@ -30,10 +34,37 @@ class Adapter(JSONAPIAdapter):
             "classificationName": "music,arts",
             "startDateTime": start,
             "endDateTime": end,
-            "size": 50,
-            "sort": "date,asc",
+            "size": self.PAGE_SIZE,
+            "sort": "onSaleStartDate,asc",
         }
-        return self.fetch_json(self.BASE_URL, params=params)
+
+    def fetch_raw(self) -> dict:
+        api_key = os.environ.get("TICKETMASTER_API_KEY", "")
+        if not api_key:
+            self.logger.warning("TICKETMASTER_API_KEY not set, skipping")
+            return {"_embedded": {"events": []}}
+
+        params = self._base_params(api_key)
+        max_pages = self.MAX_PAGES if self._backfill else 1
+
+        all_events = []
+        for page in range(max_pages):
+            params["page"] = page
+            data = self.fetch_json(self.BASE_URL, params=params)
+            events = data.get("_embedded", {}).get("events", [])
+            all_events.extend(events)
+
+            page_info = data.get("page", {})
+            total_pages = page_info.get("totalPages", 1)
+            self.logger.info(
+                f"Ticketmaster page {page + 1}/{min(max_pages, total_pages)}: "
+                f"{len(events)} events"
+            )
+
+            if page + 1 >= total_pages:
+                break
+
+        return {"_embedded": {"events": all_events}}
 
     def parse(self, raw: dict) -> list[EventDict]:
         events = []
