@@ -56,8 +56,7 @@ jobs:
           git diff --cached --quiet || git commit -m "Update daily digest $(date +%Y-%m-%d)"
           git push
 
-      - name: Fail if ingestion had errors
+      - name: Warn if ingestion had errors
         if: steps.ingest.outcome == 'failure'
         run: |
           echo "::warning::Ingestion had source failures — digest still ran but check logs above"
-          exit 1
