@@ -21,7 +21,7 @@ sources:
     method: json_ld
     parser_module: ingestion.sources.jazznear
     cadence: daily
-    enabled: true
+    enabled: false  # 403 from GitHub Actions IPs since ~Apr 9 2026; removed rather than work around
 
   - name: village_vanguard
     url: "https://villagevanguard.com"
